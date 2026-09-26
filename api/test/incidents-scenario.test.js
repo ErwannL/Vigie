@@ -107,6 +107,23 @@ test('without a shared path the scenario visits the incident page (or /), expect
   ).toBe('free');
 });
 
+test('the expectation never sits on a click: trailing clicks are dropped', () => {
+  const click = { action: 'click', target: 'card.save' };
+  const path = { sessions: 6, steps: [{ action: 'visit', target: '/board/:boardId' }, click] };
+  const s = buildScenario({ incident, targetEnv: 'dev', path });
+  expect(s.steps).toEqual([
+    { action: 'visit', target: '/board/:boardId', expect: { maxDurationMs: 340, status: 200 } },
+  ]);
+  const onlyClicks = buildScenario({
+    incident,
+    targetEnv: 'dev',
+    path: { sessions: 6, steps: [click] },
+  });
+  expect(onlyClicks.steps).toEqual([
+    { action: 'visit', target: '/', expect: { maxDurationMs: 340, status: 200 } },
+  ]);
+});
+
 test('scenarios can never target prod', () => {
   expect(() => buildScenario({ incident, targetEnv: 'prod', path: null })).toThrow(
     'figura_target_forbidden',

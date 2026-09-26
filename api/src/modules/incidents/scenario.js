@@ -56,6 +56,9 @@ function expectation(incident) {
 /** Builds a Figura scenario from an incident and an aggregated path (never raw user data). */
 export function buildScenario({ incident, targetEnv, path }) {
   const steps = path ? path.steps.map((s) => ({ ...s })) : [];
+  // Figura cannot measure a click (data-vigie ids are not replayable): the expectation must
+  // sit on a replayable step, so trailing clicks are dropped.
+  while (steps.at(-1)?.action === 'click') steps.pop();
   if (steps.length === 0) steps.push({ action: 'visit', target: incident.pages[0] ?? '/' });
   steps[steps.length - 1].expect = expectation(incident);
   const scenario = {
