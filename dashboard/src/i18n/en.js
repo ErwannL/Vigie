@@ -100,6 +100,7 @@ export default {
   'replay.state.reproduced': 'reproduced',
   'replay.state.not_reproduced': 'not reproduced',
   'replay.state.failed': 'failed',
+  'replay.state.inconclusive': 'inconclusive (Figura could not reach the target)',
 
   'history.opened': 'Opened',
   'history.signal': 'Signal seen again',
@@ -109,6 +110,7 @@ export default {
   'history.replay_reproduced': 'Figura reproduced it',
   'history.replay_not_reproduced': 'Figura did not reproduce it',
   'history.replay_failed': 'Figura run failed',
+  'history.replay_inconclusive': 'Figura could not reach the target: inconclusive',
   'history.resolved': 'Marked resolved',
 
   'compare.title': 'Compare environments',

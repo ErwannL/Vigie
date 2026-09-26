@@ -100,6 +100,7 @@ export default {
   'replay.state.reproduced': 'reproduit',
   'replay.state.not_reproduced': 'non reproduit',
   'replay.state.failed': 'échoué',
+  'replay.state.inconclusive': 'non concluant (Figura n’a pas joint la cible)',
 
   'history.opened': 'Ouvert',
   'history.signal': 'Signal revu',
@@ -109,6 +110,7 @@ export default {
   'history.replay_reproduced': 'Figura l’a reproduit',
   'history.replay_not_reproduced': 'Figura ne l’a pas reproduit',
   'history.replay_failed': 'Le rejeu Figura a échoué',
+  'history.replay_inconclusive': 'Figura n’a pas joint la cible : non concluant',
   'history.resolved': 'Marqué résolu',
 
   'compare.title': 'Comparer les environnements',

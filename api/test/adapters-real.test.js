@@ -417,6 +417,21 @@ test('Figura: unknown state, missing runId, missing accepted are refused; eviden
   expect(await one({ accepted: false }).pushPersonas({})).toEqual({ accepted: false });
 });
 
+test('Figura: an unreachable or unready target is inconclusive, any other failure stays failed', async () => {
+  const one = (body) =>
+    createHttpFigura({ url: 'http://f', token: 'x', timeoutMs: 5, fetchImpl: fakeFetch(body) });
+  for (const error of ['TARGET_UNREACHABLE: page.goto timeout', 'TARGET_NOT_READY']) {
+    expect((await one({ state: 'failed', error }).status('1')).state).toBe('inconclusive');
+  }
+  expect((await one({ state: 'failed', error: 'REPLAY_INCOMPLETE' }).status('1')).state).toBe(
+    'failed',
+  );
+  expect((await one({ state: 'failed' }).status('1')).state).toBe('failed');
+  expect((await one({ state: 'reproduced', error: 'TARGET_NOT_READY' }).status('1')).state).toBe(
+    'reproduced',
+  );
+});
+
 test('Figura refuses prod before any HTTP call, even with a real client wired', async () => {
   const fetchImpl = fakeFetch({ runId: 'x' });
   const real = createHttpFigura({ url: 'http://f', token: 'x', timeoutMs: 5, fetchImpl });
