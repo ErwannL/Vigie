@@ -3,8 +3,8 @@ import { Writable } from 'node:stream';
 import { afterAll, expect, test, vi } from 'vitest';
 import { loadConfig } from '../src/config.js';
 import { FIXTURES_DIR, loadFixtures, systemClock } from '../src/container.js';
-import { runSeed, seedScale } from '../src/seed/cli.js';
-import { runMigrations } from '../src/store/migrate-cli.js';
+import { runSeed, seedScale } from '../src/seed/run.js';
+import { runMigrations } from '../src/store/run-migrations.js';
 import { startApi } from '../src/server.js';
 import { logSink, testDb, testVars } from './helpers.js';
 

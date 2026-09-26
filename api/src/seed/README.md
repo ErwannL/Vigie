@@ -1,6 +1,6 @@
 # api/src/seed/
 
-`npm run seed:demo` (`cli.js`) fills the database with a deterministic synthetic dataset so
+`npm run seed:demo` (`cli.js` → `run.js`) fills the database with a deterministic synthetic dataset so
 the dashboard and both modules can be demonstrated with no real system connected.
 
 - `random.js` – seeded PRNG helpers (same data on every run).
