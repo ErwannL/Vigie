@@ -1,0 +1,23 @@
+{
+  "name": "@vigie/api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js",
+    "jobs": "node src/jobs/main.js",
+    "migrate": "node src/store/migrate-cli.js",
+    "seed:demo": "node src/seed/cli.js",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage"
+  },
+  "dependencies": {
+    "fastify": "^5.12.5",
+    "pg": "^8.23.0"
+  },
+  "devDependencies": {
+    "@vitest/coverage-v8": "^5.0.2",
+    "vitest": "^5.0.2"
+  }
+}

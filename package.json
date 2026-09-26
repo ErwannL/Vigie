@@ -1,0 +1,29 @@
+{
+  "name": "vigie",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "workspaces": [
+    "api",
+    "dashboard"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "lint": "eslint . --max-warnings=0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "coverage": "npm run coverage -w api && npm run coverage -w dashboard",
+    "test": "npm test -w api && npm test -w dashboard",
+    "seed:demo": "npm run seed:demo -w api",
+    "check:lines": "node scripts/check-lines.js"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.11.0",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "globals": "^17.12.0",
+    "prettier": "^3.9.9"
+  }
+}
