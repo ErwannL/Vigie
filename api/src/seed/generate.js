@@ -138,6 +138,7 @@ function paywall(world, ctx) {
   });
   if (world.rng.chance(0.2)) {
     world.emit(ctx, 'page_view', 'app', { target: { page: '/settings/billing' } });
+    useFeature(world, ctx, 'billing.upgrade', '/settings/billing');
     world.emit(ctx, 'upgrade', 'app', {
       target: { page: '/settings/billing', feature: 'billing.upgrade' },
     });

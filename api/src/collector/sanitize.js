@@ -9,9 +9,12 @@ const PARAM = /^:[a-zA-Z][a-zA-Z0-9_]{0,39}$/;
 const LITERAL = /^[a-z][a-z0-9_.-]{0,39}$/;
 const HEX_ID = /^[0-9a-f]{12,}$/;
 
-/** True when one path segment looks like an identifier rather than a route word. */
+/**
+ * True when a route word (it already starts with a letter) is really an identifier:
+ * a hex id, 4+ digits, or a long token containing digits.
+ */
 function looksLikeId(segment) {
-  if (/^\d+$/.test(segment) || HEX_ID.test(segment)) return true;
+  if (HEX_ID.test(segment)) return true;
   const digits = segment.replace(/\D/g, '').length;
   return digits >= 4 || (segment.length > 24 && digits > 0);
 }

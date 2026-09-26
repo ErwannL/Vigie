@@ -2,7 +2,7 @@ import { EventEmitter } from 'node:events';
 import { Writable } from 'node:stream';
 import { afterAll, expect, test, vi } from 'vitest';
 import { loadConfig } from '../src/config.js';
-import { FIXTURES_PATH, loadFixtures, systemClock } from '../src/container.js';
+import { FIXTURES_DIR, loadFixtures, systemClock } from '../src/container.js';
 import { runSeed, seedScale } from '../src/seed/cli.js';
 import { runMigrations } from '../src/store/migrate-cli.js';
 import { startApi } from '../src/server.js';
@@ -70,7 +70,7 @@ test('seed CLI: scale parsing and summary output', async () => {
 test('fixtures only load in development; the system clock is real time', () => {
   expect(loadFixtures(loadConfig({}))).toEqual({});
   expect(
-    Object.keys(loadFixtures(loadConfig({ VIGIE_MODE: 'development' }), FIXTURES_PATH)),
-  ).toEqual(['prod', 'recette', 'dev']);
+    Object.keys(loadFixtures(loadConfig({ VIGIE_MODE: 'development' }), FIXTURES_DIR)),
+  ).toEqual(['dev', 'recette', 'prod']);
   expect(Math.abs(systemClock.now() - Date.now())).toBeLessThan(1000);
 });

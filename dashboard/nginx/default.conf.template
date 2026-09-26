@@ -1,0 +1,24 @@
+# Rendered at container start by the nginx image (envsubst on /etc/nginx/templates).
+# VIGIE_CSP_FRAME_ANCESTORS is derived from VIGIE_ALLOWED_FRAME_ANCESTORS by 15-vigie-csp.envsh:
+# who may embed the dashboard in an <iframe> (the Orqea admin console).
+server {
+  listen 8080;
+  server_name _;
+  root /usr/share/nginx/html;
+
+  add_header Content-Security-Policy "default-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors ${VIGIE_CSP_FRAME_ANCESTORS}" always;
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header Referrer-Policy "no-referrer" always;
+
+  # Same-origin API: no CORS, and no third-party cookie problem inside the iframe.
+  location /api/ {
+    proxy_pass http://api:3000/;
+    proxy_set_header Host $host;
+    proxy_read_timeout 30s;
+    proxy_connect_timeout 5s;
+  }
+
+  location / {
+    try_files $uri /index.html;
+  }
+}

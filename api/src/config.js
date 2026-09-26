@@ -30,9 +30,12 @@ function errorsSources(vars) {
   );
 }
 
+const CSP_KEYWORDS = new Set(['self', 'none']);
+
+/** CSP frame-ancestors sources; the keywords self/none may be written without quotes. */
 function frameAncestors(value) {
-  const list = (nonEmpty(value) ?? "'self'").split(/[\s,]+/).filter(Boolean);
-  return list.join(' ');
+  const list = (nonEmpty(value) ?? 'self').split(/[\s,]+/).filter(Boolean);
+  return list.map((s) => (CSP_KEYWORDS.has(s) ? `'${s}'` : s)).join(' ');
 }
 
 function autoReplayTarget(value) {

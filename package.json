@@ -17,7 +17,8 @@
     "coverage": "npm run coverage -w api && npm run coverage -w dashboard",
     "test": "npm test -w api && npm test -w dashboard",
     "seed:demo": "npm run seed:demo -w api",
-    "check:lines": "node scripts/check-lines.js"
+    "check": "node scripts/check.js",
+    "verify": "npm run check && npm run lint && npm run format:check && npm run coverage"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

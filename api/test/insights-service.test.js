@@ -115,6 +115,10 @@ test('personas: preview from prod, push to recette, history stored with both env
   expect(preview.set.targetEnv).toBe('recette');
   expect(preview.set.personas.length).toBeGreaterThan(1);
   for (const p of preview.set.personas) expect(p.sample.people).toBeGreaterThanOrEqual(10);
+  // Weights come from feature_use only: free users hit the rules.edit paywall but never use it.
+  const free = preview.set.personas.filter((p) => p.traits.plan === 'free');
+  expect(free.length).toBeGreaterThan(0);
+  for (const p of free) expect(p.weights.features['rules.edit']).toBeUndefined();
   const pushed = await i.pushPersonas('prod', 'dev', 28, { sub: 'op-1', name: 'Ada' });
   expect(pushed).toMatchObject({ pushed: true, id: 1, accepted: preview.set.personas.length });
   const fake = c.adapters.figuraSlots.dev.impl;

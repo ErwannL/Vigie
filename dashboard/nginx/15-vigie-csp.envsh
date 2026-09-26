@@ -1,0 +1,7 @@
+#!/bin/sh
+# Sourced by the nginx image entrypoint before templates are rendered.
+# Same rule as the API (api/src/config.js): commas become spaces, self/none get their quotes.
+VIGIE_CSP_FRAME_ANCESTORS=$(printf '%s' "${VIGIE_ALLOWED_FRAME_ANCESTORS:-self}" \
+  | tr ',' ' ' \
+  | awk '{ for (i = 1; i <= NF; i++) { t = $i; if (t == "self" || t == "none") t = "\047" t "\047"; printf "%s%s", (i > 1 ? " " : ""), t } }')
+export VIGIE_CSP_FRAME_ANCESTORS

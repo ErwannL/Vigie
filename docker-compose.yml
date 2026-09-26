@@ -1,0 +1,70 @@
+# `docker compose up` starts storage, API, jobs and dashboard.
+# Tools (profiles): `docker compose run --rm seed` and `docker compose run --rm tests`.
+name: vigie
+
+x-api: &api
+  build: { context: ., target: api }
+  image: vigie-api
+  env_file:
+    - path: .env
+      required: false
+  environment:
+    DATABASE_URL: postgres://${POSTGRES_USER:-vigie}:${POSTGRES_PASSWORD:-vigie}@postgres:5432/${POSTGRES_DB:-vigie}
+  depends_on:
+    postgres:
+      condition: service_healthy
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-vigie}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-vigie}
+      POSTGRES_DB: ${POSTGRES_DB:-vigie}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-vigie}']
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  api:
+    <<: *api
+    ports:
+      - '${VIGIE_API_PORT:-3000}:3000'
+
+  jobs:
+    <<: *api
+    command: ['node', 'api/src/jobs/main.js']
+    healthcheck:
+      disable: true
+
+  dashboard:
+    build: { context: ., target: dashboard }
+    environment:
+      VIGIE_ALLOWED_FRAME_ANCESTORS: ${VIGIE_ALLOWED_FRAME_ANCESTORS:-self}
+    ports:
+      - '${VIGIE_DASHBOARD_PORT:-8080}:8080'
+    depends_on:
+      - api
+
+  seed:
+    <<: *api
+    profiles: [tools]
+    command: ['npm', 'run', 'seed:demo']
+    healthcheck:
+      disable: true
+
+  tests:
+    build: { context: ., target: dev }
+    profiles: [test]
+    environment:
+      TEST_DATABASE_URL: postgres://${POSTGRES_USER:-vigie}:${POSTGRES_PASSWORD:-vigie}@postgres:5432/vigie_test
+    command: ['npm', 'run', 'verify']
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  pgdata:

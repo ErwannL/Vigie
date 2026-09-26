@@ -34,7 +34,8 @@ export async function personaFeatures(db, env, from, to) {
   const { rows } = await db.query(
     `WITH s AS (
        SELECT session, max(plan) AS plan, mode() WITHIN GROUP (ORDER BY device) AS device,
-              array_agg(DISTINCT feature) FILTER (WHERE feature IS NOT NULL) AS features
+              array_agg(DISTINCT feature) FILTER (WHERE type = 'feature_use' AND feature IS NOT NULL)
+                AS features
        FROM events
        WHERE env = $1 AND consent = 'analytics' AND session IS NOT NULL AND user_id IS NOT NULL
          AND occurred_at >= $2 AND occurred_at < $3

@@ -3,6 +3,7 @@ import pino from 'pino';
 import { createAdapters } from './adapters/registry.js';
 import { createCollector } from './collector/ingest.js';
 import { loadConfig } from './config.js';
+import { ENVS } from './env.js';
 import { createIncidentQueries } from './modules/incidents/queries.js';
 import { createIncidentService } from './modules/incidents/service.js';
 import { createInsightsService } from './modules/insights/service.js';
@@ -13,11 +14,14 @@ import { createAuditRepo, createJtiRepo, createPersonaSetsRepo } from './store/m
 
 export const systemClock = Object.freeze({ now: () => new Date() });
 
-export const FIXTURES_PATH = new URL('../fixtures/sources.json', import.meta.url);
+export const FIXTURES_DIR = new URL('../fixtures/', import.meta.url);
 
-/** Fixture data for the fake pull sources, used only in development mode. */
-export function loadFixtures(config, path = FIXTURES_PATH) {
-  return config.mode === 'development' ? JSON.parse(readFileSync(path, 'utf8')) : {};
+/** Fixture data for the fake pull sources (one file per environment), development mode only. */
+export function loadFixtures(config, dir = FIXTURES_DIR) {
+  if (config.mode !== 'development') return {};
+  return Object.fromEntries(
+    ENVS.map((env) => [env, JSON.parse(readFileSync(new URL(`${env}.json`, dir), 'utf8'))]),
+  );
 }
 
 /**

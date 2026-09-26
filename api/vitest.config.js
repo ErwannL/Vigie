@@ -11,7 +11,8 @@ export default defineConfig({
     hookTimeout: 60000,
     coverage: {
       provider: 'v8',
-      include: ['src/**/*.js'],
+      include: ['src/**/*.js', '../scripts/**/*.js'],
+      allowExternal: true,
       reporter: ['text', 'json-summary'],
       thresholds: { statements: 100, branches: 100, functions: 100, lines: 100 },
     },

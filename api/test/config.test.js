@@ -34,7 +34,7 @@ test('reads per-environment sources, secrets and bounded integers', () => {
     VIGIE_FIGURA_URL_RECETTE: 'http://figura',
     VIGIE_INGEST_SECRET_PROD: 'p'.repeat(32),
     VIGIE_INGEST_SECRET_DEV: 'short',
-    VIGIE_ALLOWED_FRAME_ANCESTORS: 'https://a.test, https://b.test',
+    VIGIE_ALLOWED_FRAME_ANCESTORS: "self, https://a.test 'none'",
     VIGIE_AUTO_REPLAY_TARGET: 'recette',
   });
   expect(c.mode).toBe('development');
@@ -46,7 +46,7 @@ test('reads per-environment sources, secrets and bounded integers', () => {
   expect(c.figura.recette).toBe('http://figura');
   expect(c.ingestSecrets.prod).toBe('p'.repeat(32));
   expect(c.ingestSecrets.dev).toBeNull();
-  expect(c.allowedFrameAncestors).toBe('https://a.test https://b.test');
+  expect(c.allowedFrameAncestors).toBe("'self' https://a.test 'none'");
   expect(c.autoReplayTarget).toBe('recette');
 });
 

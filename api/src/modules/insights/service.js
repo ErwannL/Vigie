@@ -1,5 +1,5 @@
 import { FUNNELS } from '../../catalogues.js';
-import { assertEnv, assertFiguraTarget } from '../../env.js';
+import { assertFiguraTarget } from '../../env.js';
 import { errorsBySegment, errorsView } from './errors.js';
 import { funnelView, groupSubjects, loadFunnelSubjects } from './funnels.js';
 import { landingClicks, landingConversions, landingCounts, landingView } from './landing.js';
@@ -26,10 +26,10 @@ function clampDays(days) {
 /**
  * The window of an insight and whether analytics-consent data exists in it. Behavioural
  * insights return only this meta (`analytics.hasData = false`) when there is none, instead of
- * empty or misleading numbers.
+ * empty or misleading numbers. The environment is enforced by `events.countAnalytics`, the
+ * first query of every insight.
  */
 async function frame({ events, clock }, env, days) {
-  assertEnv(env);
   const to = clock.now();
   const w = { days: clampDays(days), to };
   w.from = daysBefore(to, w.days);
