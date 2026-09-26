@@ -78,16 +78,18 @@ Legend: **[Vigie]** change in this repository · **[Orqea]** change in Orqea ·
 ### 1.6 SSO handoff route **[Orqea]**
 
 - [ ] Admin console route that, for an authenticated operator, signs an HS256 JWT with
-      `VIGIE_SSO_SECRET`: `{ iss: "orqea", aud: "vigie", sub: <operator id>, name, iat,
-exp: iat + 60, jti: <random uuid> }` and renders
+      `VIGIE_SSO_SECRET`: `{ iss: "orqea-admin-console", aud: "vigie", operator: <operator id>, iat,
+exp: iat + 60, jti: <random uuid> }` (Orqea's existing admin handoff factory, which must
+      add `jti`; `sub`/`name` are optional) and renders
       `<iframe src="https://vigie.example/#sso=<jwt>">`. Mint a new token for each load.
 - [ ] Reference implementation: `api/src/auth/jwt.js` (`signHs256`); test vectors:
       `api/test/auth.test.js`.
 
 ### 1.7 Issue board mapping **[Orqea]**
 
-- [ ] Internal endpoint(s) receiving the IssueSink payload (`CONTRACT.md` §5): create a card
-      on the issue board on `open` (return its id as `ref`), update it on `update`.
+- [ ] Endpoint receiving the IssueSink payload (`CONTRACT.md` §5), bearer
+      `VIGIE_ISSUES_TOKEN`: `POST {VIGIE_ISSUES_URL}` creates a card → `201 { ref }`;
+      `PUT {VIGIE_ISSUES_URL}/{ref}` updates it → `200`.
 - [ ] Mapping suggestion: title → card title; severity → label; `affected` and `segments` →
       description; `reproduction.state` → checklist item; `evidenceLinks` → link to Vigie.
 
@@ -99,30 +101,32 @@ exp: iat + 60, jti: <random uuid> }` and renders
 
 ## 2. Plug the observability sources **[Vigie]**
 
-For each: implement the stub, keep the interface, use `fetchJson` from
-`api/src/adapters/http.js` (mandatory timeout), add tests with a fake `fetchImpl`, and keep
-coverage at 100 %.
+The adapters are implemented and tested (`api/test/adapters-real.test.js`, fake `fetchImpl`);
+what is left is configuration and checking against the real systems (`CONTRACT.md` §3).
 
-- [ ] **Logs – Loki**: `api/src/adapters/logs/loki.js`. The comment gives the LogQL
-      (`{app="orqea-api"} | json | route="…"`). Map each line to
-      `{ ts, level, route, durationMs, status, msgKind }` — `msgKind` is a stable message key,
-      not the text. Configure `VIGIE_LOKI_URL_DEV|RECETTE|PROD`.
-- [ ] **Metrics – Prometheus**: `api/src/adapters/metrics/prometheus.js`.
-      `histogram_quantile(q, sum by (le, route) (rate(<latency histogram>_bucket[5m])))` with
-      the **route template** label; convert seconds to ms. `VIGIE_PROMETHEUS_URL_<ENV>`.
-- [ ] **Errors – GlitchTip/Sentry**: `api/src/adapters/errors/glitchtip.js`. List issues
-      active in the window with their event count in the window; `route` from the
-      `transaction` tag when it is a template. `VIGIE_ERRORS_URL_<ENV>`, `VIGIE_ERRORS_TOKEN_<ENV>`.
+- [x] **[Vigie] Logs – Loki**: `api/src/adapters/logs/loki.js` (selector
+      `VIGIE_LOKI_SELECTOR`, default `{container=~".*backend.*"}`, then `| json`; `msgKind`
+      never the message text).
+- [ ] **[Ops]** Configure `VIGIE_LOKI_URL_DEV|RECETTE|PROD`.
+- [x] **[Vigie] Metrics – Prometheus**: `api/src/adapters/metrics/prometheus.js`
+      (`VIGIE_PROMETHEUS_METRIC`, default `orqea_http_request_duration_seconds_bucket`).
+- [ ] **[Ops]** Configure `VIGIE_PROMETHEUS_URL_<ENV>`.
+- [x] **[Vigie] Errors – GlitchTip/Sentry**: `api/src/adapters/errors/glitchtip.js`; `route`
+      from `culprit` when it is a route template.
+- [ ] **[Ops]** Configure `VIGIE_ERRORS_URL_<ENV>` (instance base URL),
+      `VIGIE_ERRORS_TOKEN_<ENV>` and `VIGIE_ERRORS_PROJECT_<ENV>` (`org/project`).
 - [ ] Check: Settings shows the source as "Configured"; `POST /v1/detect?env=prod` returns
       no `sourceErrors`; incidents show `source: metrics|errors|logs` triggers.
 
 ## 3. Plug Figura **[Vigie + Figura team]**
 
-- [ ] Agree on Figura's endpoints and implement `api/src/adapters/figura/figura.js`
-      (`replay`, `status`, `pushPersonas`), one instance per target.
-- [ ] Figura must accept the scenario and persona-set formats of `CONTRACT.md` §4 (or map
-      them in `figura.js`).
-- [ ] Configure `VIGIE_FIGURA_URL_DEV` and `VIGIE_FIGURA_URL_RECETTE`. **There is no prod
+- [x] **[Vigie]** `api/src/adapters/figura/figura.js`: `POST /api/vigie/replays`,
+      `GET /api/vigie/replays/{runId}`, `POST /api/vigie/personas`, bearer token
+      (`CONTRACT.md` §4).
+- [ ] **[Figura]** Expose those endpoints, accepting the scenario and persona-set formats of
+      `CONTRACT.md` §4.
+- [ ] Configure `VIGIE_FIGURA_URL_DEV|RECETTE` and `VIGIE_FIGURA_TOKEN_DEV|RECETTE` (≥ 32
+      chars). **There is no prod
       Figura setting and there must never be one**; `client.js` refuses prod and a test
       (`api/test/adapters.test.js`) guards it.
 - [ ] Optional: `VIGIE_AUTO_REPLAY_TARGET=recette` to replay every new incident automatically.
@@ -138,8 +142,10 @@ coverage at 100 %.
 
 ## 5. Plug the issue sink **[Vigie]**
 
-- [ ] Implement `api/src/adapters/issues/orqea.js` against §1.7's endpoints;
-      configure `VIGIE_ISSUES_URL`, `VIGIE_ISSUES_TOKEN`.
+- [x] **[Vigie]** `api/src/adapters/issues/orqea.js` implements §1.7's endpoints (POST /
+      PUT, bearer).
+- [ ] **[Ops]** Configure `VIGIE_ISSUES_URL`, `VIGIE_ISSUES_TOKEN`.
+- [x] **[Vigie]** SSO accepts Orqea's handoff (`iss` = `VIGIE_SSO_ISSUER`, `operator` claim).
 - [ ] Check: a new incident creates a card; resolving it in Vigie updates the card.
 
 ## 6. Final verification

@@ -185,9 +185,10 @@ Both are idempotent (a second `DELETE` returns `deleted: 0`). Errors: `401 unaut
 
 ## 3. Pull adapters (observability)
 
-Interfaces Vigie calls; the integrator writes the real implementations
-(`api/src/adapters/*/loki.js`, `prometheus.js`, `glitchtip.js`). All calls go through
-`fetchJson` with a timeout (`VIGIE_HTTP_TIMEOUT_MS`, default 5000).
+Interfaces Vigie calls, implemented in `api/src/adapters/{logs/loki,metrics/prometheus,
+errors/glitchtip}.js`. All calls go through `fetchJson` with a timeout
+(`VIGIE_HTTP_TIMEOUT_MS`, default 5000); a non-2xx answer is `upstream_error`, a body that is
+not the expected shape is `upstream_bad_response`.
 
 ```text
 LogsSource.query({ from: Date, to: Date, route?: string, level?: string })
@@ -202,8 +203,30 @@ ErrorsSource.issues({ from: Date, to: Date })
 
 Configuration, one per Orqea environment (`<ENV>` = `DEV`, `RECETTE`, `PROD`):
 `VIGIE_LOKI_URL_<ENV>`, `VIGIE_PROMETHEUS_URL_<ENV>`, `VIGIE_ERRORS_URL_<ENV>`,
-`VIGIE_ERRORS_TOKEN_<ENV>`. Unset → fake (fixtures) when `VIGIE_MODE=development`, disabled
-("not configured") otherwise. A source that throws is reported in the detection result
+`VIGIE_ERRORS_TOKEN_<ENV>`, `VIGIE_ERRORS_PROJECT_<ENV>`. Unset → fake (fixtures) when `VIGIE_MODE=development`, disabled
+("not configured") otherwise.
+
+What the real implementations send:
+
+- **Loki**: `GET {url}/loki/api/v1/query_range?query=<selector> | json [| route="…"]
+[| level="…"]&start=<ns>&end=<ns>&limit=5000&direction=forward`. The selector is
+  `VIGIE_LOKI_SELECTOR` (default `{container=~".*backend.*"}`): Orqea's labels are few
+  (`source`, `container`, `stream`), every other field is in the JSON line. Per line: `level`,
+  `route`, `durationMs` (or `duration_ms`), `status` (or `statusCode`), `msgKind` = field
+  `msgKind` or `event` — **never the message text**. Missing fields are `null`; non-JSON lines
+  are skipped.
+- **Prometheus**: `GET {url}/api/v1/query_range?query=histogram_quantile(q, sum by (le, route)
+(rate(<metric>{route="…"}[5m])))&start=<s>&end=<s>&step=60`, `<metric>` =
+  `VIGIE_PROMETHEUS_METRIC` (default `orqea_http_request_duration_seconds_bucket`), the route
+  filter only when a route is asked. Seconds → ms; `NaN`/`Inf` samples are skipped.
+- **GlitchTip / Sentry**: `GET {url}/api/0/projects/<org>/<project>/issues/?start=<ISO>&end=<ISO>
+&query=is:unresolved&limit=100` with `Authorization: Bearer <token>`. `url` is the instance
+  base URL and `VIGIE_ERRORS_PROJECT_<ENV>` is `org/project` (a slot without a valid project is
+  not configured). Mapping: `fingerprint` = issue `id` (else `shortId`), `title` (replaced by
+  `metadata.type` when it looks like user data), `count` as a number, `firstSeen`, `lastSeen`,
+  `route` = `culprit` only when it passes the collector's route-template check, else `null`.
+
+A source that throws is reported in the detection result
 (`sourceErrors`) and never stops detection.
 
 ---
@@ -216,7 +239,20 @@ FiguraClient.status(runId)      → { state: "queued"|"running"|"reproduced"|"no
 FiguraClient.pushPersonas(set)  → { accepted }
 ```
 
-- One Figura endpoint per **target**: `VIGIE_FIGURA_URL_DEV`, `VIGIE_FIGURA_URL_RECETTE`.
+- One Figura endpoint per **target**: `VIGIE_FIGURA_URL_DEV`, `VIGIE_FIGURA_URL_RECETTE`,
+  each with its bearer token `VIGIE_FIGURA_TOKEN_DEV`, `VIGIE_FIGURA_TOKEN_RECETTE` (≥ 32
+  chars; a target without a valid token counts as not configured).
+- HTTP, every call with `Authorization: Bearer <token>`:
+
+  | Call                | Request                                                | Answer                                            |
+  | ------------------- | ------------------------------------------------------ | ------------------------------------------------- |
+  | `replay(scenario)`  | `POST {url}/api/vigie/replays`, body = Scenario        | `{ "runId": "<non-empty string>" }`               |
+  | `status(runId)`     | `GET {url}/api/vigie/replays/{encodeURIComponent(id)}` | `{ "state": "<one of the five>", "evidence": … }` |
+  | `pushPersonas(set)` | `POST {url}/api/vigie/personas`, body = PersonaSet     | `{ "accepted": … }`                               |
+
+  A `state` outside `queued|running|reproduced|not_reproduced|failed`, a missing `runId` or a
+  missing `accepted` is refused (`upstream_bad_response`).
+
 - 🔴 **Figura never runs against prod.** `targetEnv` must be `dev` or `recette`; anything
   else fails with `figura_target_forbidden` _before_ any call. No setting can change this.
 - **Source and target are independent**: data from any environment (usually prod) can become
@@ -308,7 +344,14 @@ IssueSink.open(payload)        → { ref }      // Orqea creates a card on its i
 IssueSink.update(ref, payload)                // same card, new state
 ```
 
-Configured by `VIGIE_ISSUES_URL` / `VIGIE_ISSUES_TOKEN`. Called when an incident opens,
+Configured by `VIGIE_ISSUES_URL` / `VIGIE_ISSUES_TOKEN`. HTTP, with
+`Authorization: Bearer <VIGIE_ISSUES_TOKEN>` and the payload below as JSON body:
+
+- `open`: `POST {VIGIE_ISSUES_URL}` → `201 { "ref": "<non-empty string>" }`.
+- `update`: `PUT {VIGIE_ISSUES_URL}/{encodeURIComponent(ref)}` → `200` (body ignored, may be
+  empty).
+
+Called when an incident opens,
 changes, is reproduced, resolved or reopened. A failing sink is logged and retried on the
 next change; it never blocks detection.
 
@@ -403,18 +446,20 @@ session). Unknown `type` or `feature` values are rejected at ingestion.
 
    ```json
    {
-     "iss": "orqea",
+     "iss": "orqea-admin-console",
      "aud": "vigie",
-     "sub": "operator-42",
-     "name": "Ada Lovelace",
+     "operator": "ada@orqea.example",
      "iat": 1788264000,
      "exp": 1788264060,
      "jti": "5f0c…unique"
    }
    ```
 
-   `exp − iat` ≤ 60 s (5 s clock skew tolerated), `jti` single use, `name` only goes to
-   Vigie's audit log.
+   `iss` must equal `VIGIE_SSO_ISSUER` (default `orqea-admin-console`, what Orqea's admin
+   handoff factory signs). The subject is `sub`, or `operator` when `sub` is absent (one of
+   them is required); `name` is optional and defaults to the subject. `aud` is `vigie`,
+   `exp − iat` ≤ 60 s (5 s clock skew tolerated), `jti` required and single use; the subject
+   and name only go to Vigie's audit log.
 
 2. The dashboard removes the fragment from the URL immediately, then calls:
 
@@ -427,7 +472,7 @@ session). Unknown `type` or `feature` values are rejected at ingestion.
 
    ```json
    200 { "token": "<vigie session>", "expiresAt": "2026-09-01T12:30:00.000Z",
-         "operator": { "sub": "operator-42", "name": "Ada Lovelace" } }
+         "operator": { "sub": "ada@orqea.example", "name": "ada@orqea.example" } }
    ```
 
    Errors (401): `sso_malformed`, `sso_bad_algorithm`, `sso_bad_signature`,
@@ -489,8 +534,8 @@ Every people count in an insight is `{ "value": n, "masked": false }` or, below 
 | `figura_not_configured`                                                                 | 503    | no Figura for that target                    |
 | `sso_*`                                                                                 | 401    | see §7                                       |
 | `sso_not_configured`, `session_not_configured`                                          | 503    | secrets missing                              |
-| `not_implemented`                                                                       | 501    | a real adapter stub was reached              |
-| `upstream_timeout`, `upstream_unreachable`, `upstream_error`                            | 502    | adapter HTTP failure                         |
+| `not_implemented`                                                                       | 501    | reserved (no adapter uses it)                |
+| `upstream_timeout`, `upstream_unreachable`, `upstream_error`, `upstream_bad_response`   | 502    | adapter HTTP failure                         |
 | `not_found`                                                                             | 404    | unknown path                                 |
 | `internal_error`                                                                        | 500    | anything else (details only in Vigie's logs) |
 

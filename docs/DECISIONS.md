@@ -165,6 +165,34 @@ reopened` only when the signal returns with an `appVersion` different from the o
   database whose schema is reset at start. Only `TEST_DATABASE_URL` is read from outside.
 - **Language default**: the browser language (French if it starts with `fr`), then remembered.
 
+## Real adapters (plugging into Orqea)
+
+**GlitchTip project as a separate variable, `VIGIE_ERRORS_PROJECT_<ENV>=org/project`**, rather
+than parsing it out of a long `…/api/0/projects/<org>/<project>/` URL. `VIGIE_ERRORS_URL_<ENV>`
+stays the instance base URL (the value an operator opens in a browser), the project is
+validated on its own (`org/project`, else the slot is "not configured"), and changing project
+does not mean rewriting a URL.
+
+**Error `route` from `culprit`, only when it is a route template** (the collector's
+`isTemplate`). The issues list carries no tags; Sentry's `culprit` is often a function name,
+which becomes `null` rather than a fake route. An issue **title that looks like user data**
+(`looksSensitive`) is replaced by its error type.
+
+**Loki: one configurable stream selector + `| json`.** Orqea's labels are few (`source`,
+`container`, `stream`), so route and level are filtered after JSON parsing. `msgKind` comes
+from a stable field (`msgKind`, else `event`), never from the message.
+
+**`upstream_bad_response`** (502): an answer that parses but has the wrong shape (no `ref`,
+unknown Figura `state`, no Loki `result`) is refused rather than half-used. `fetchJson` returns
+`null` for an empty body (a `PUT` answered `200` without content is fine).
+
+**Figura tokens follow the secret rule (≥ 32 chars)**: a target with a URL but no valid token
+is "not configured", so Vigie never calls Figura unauthenticated.
+
+**SSO issuer is a setting** (`VIGIE_SSO_ISSUER`, default `orqea-admin-console`) and the subject
+is `sub` or, failing that, Orqea's `operator` claim: Vigie adapts to Orqea's existing admin
+handoff factory instead of requiring a second one. `name` defaults to the subject.
+
 ## Verified by breaking the code
 
 Each key rule was broken on purpose, its test suite run, then the code restored. All went red.
