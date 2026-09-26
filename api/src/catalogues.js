@@ -31,7 +31,7 @@ export const THEMES = Object.freeze(['dark', 'light']);
 export const CONSENTS = Object.freeze(['essential', 'analytics']);
 
 export const FEATURES = Object.freeze({
-  version: 1,
+  version: 2,
   items: Object.freeze([
     'board.create',
     'board.share',
@@ -51,6 +51,17 @@ export const FEATURES = Object.freeze({
     'cicd.connect',
     'members.invite',
     'export.csv',
+    'notes.create',
+    'assistant.chat',
+    'assistant.report',
+    'card.duplicate',
+    'cicd.fix',
+    'remote.connect',
+    'import.github',
+    'import.gitlab',
+    'calendar.subscribe',
+    'apps.open',
+    'board.encrypt',
   ]),
 });
 

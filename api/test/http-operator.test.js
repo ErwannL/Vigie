@@ -67,7 +67,7 @@ test('catalogues and settings (source status, retention, versions, ingestion con
     rawRetentionDays: 60,
     kAnonymity: 10,
     ingestion: { dev: false, recette: true, prod: true },
-    catalogues: { eventSchema: 1, features: 1, funnels: 1, segments: 1 },
+    catalogues: { eventSchema: 1, features: 2, funnels: 1, segments: 1 },
   });
   expect(settings.adapters.sources.prod).toEqual({
     logs: 'configured',

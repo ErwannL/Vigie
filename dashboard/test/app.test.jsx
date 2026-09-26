@@ -44,6 +44,18 @@ test('the #sso handoff is removed from the URL, exchanged, and the session is st
   expect(JSON.parse(session.get('vigie.session')).token).toBe('tok');
 });
 
+test('the handoff env opens the matching environment and the fragment is removed', async () => {
+  const { api, history } = setup({ hash: '#sso=the.jwt.token&env=recette' });
+  expect(history.replaceState).toHaveBeenCalledWith(null, '', '/');
+  expect(await screen.findByTestId('env-badge')).toHaveTextContent('Viewing: recette (staging)');
+  expect(api.login).toHaveBeenCalledWith('the.jwt.token');
+});
+
+test('an unknown handoff env falls back to prod', async () => {
+  setup({ hash: '#sso=the.jwt.token&env=evil' });
+  expect(await screen.findByTestId('env-badge')).toHaveTextContent('Viewing: prod');
+});
+
 test('a failed handoff shows the translated reason, never the raw code', async () => {
   const api = fakeApi({
     login: vi.fn(async () =>

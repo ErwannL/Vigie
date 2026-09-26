@@ -22,21 +22,20 @@ const PAGE_COMPONENTS = {
 };
 
 /** Exchanges the SSO handoff (or reuses a stored session) before showing anything. */
-function useAuth({ api, location, history, session, now }) {
+function useAuth({ api, handoff, session, now }) {
   const [auth, setAuth] = useState({ state: 'checking' });
   useEffect(() => {
     api.onUnauthorized(() => {
       clearSession(session);
       setAuth({ state: 'expired' });
     });
-    const handoff = takeHandoff(location, history);
     if (handoff === null) {
       const stored = loadSession(session, now());
       if (stored) api.setToken(stored.token);
       setAuth({ state: stored ? 'ready' : 'noHandoff' });
       return;
     }
-    api.login(handoff).then(
+    api.login(handoff.token).then(
       (result) => {
         saveSession(session, result);
         api.setToken(result.token);
@@ -44,19 +43,20 @@ function useAuth({ api, location, history, session, now }) {
       },
       (error) => setAuth({ state: 'failed', code: error.code }),
     );
-  }, [api, location, history, session, now]);
+  }, [api, handoff, session, now]);
   return auth;
 }
 
 export function App({ api, location, history, session, prefs, now, navigatorLanguage }) {
-  const auth = useAuth({ api, location, history, session, now });
+  const [handoff] = useState(() => takeHandoff(location, history));
+  const auth = useAuth({ api, handoff, session, now });
   const [lang, setLangState] = useState(() =>
     initialLanguage(prefs.get('vigie.lang'), navigatorLanguage),
   );
   const [theme, setThemeState] = useState(() =>
     prefs.get('vigie.theme') === 'light' ? 'light' : 'dark',
   );
-  const [env, setEnv] = useState('prod');
+  const [env, setEnv] = useState(() => handoff?.env ?? 'prod');
   const [page, setPage] = useState('incidents');
   const t = useCallback((key, vars) => translate(lang, key, vars), [lang]);
 

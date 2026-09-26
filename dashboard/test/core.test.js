@@ -84,12 +84,27 @@ test('errors become ApiError codes; 401 with a session reports expiry', async ()
 test('the SSO fragment is read and removed from the URL at once', () => {
   const history = { replaceState: vi.fn() };
   const location = { hash: '#sso=a.b%2Ec', pathname: '/vigie/', search: '?x=1' };
-  expect(takeHandoff(location, history)).toBe('a.b.c');
+  expect(takeHandoff(location, history)).toEqual({ token: 'a.b.c', env: null });
   expect(history.replaceState).toHaveBeenCalledWith(null, '', '/vigie/?x=1');
-  expect(takeHandoff({ ...location, hash: '#page=1&sso=tok' }, history)).toBe('tok');
+  expect(takeHandoff({ ...location, hash: '#page=1&sso=tok' }, history)).toEqual({
+    token: 'tok',
+    env: null,
+  });
+  for (const env of ['dev', 'recette', 'prod']) {
+    expect(takeHandoff({ ...location, hash: `#sso=t&env=${env}` }, history)).toEqual({
+      token: 't',
+      env,
+    });
+  }
+  expect(takeHandoff({ ...location, hash: '#sso=t&env=staging' }, history)).toEqual({
+    token: 't',
+    env: null,
+  });
+  expect(takeHandoff({ ...location, hash: '#env=dev' }, history)).toBeNull();
   expect(takeHandoff({ ...location, hash: '' }, history)).toBeNull();
   expect(takeHandoff({ ...location, hash: '#nosso=1' }, history)).toBeNull();
-  expect(history.replaceState).toHaveBeenCalledTimes(2);
+  expect(history.replaceState).toHaveBeenCalledTimes(6);
+  expect(history.replaceState).toHaveBeenLastCalledWith(null, '', '/vigie/?x=1');
 });
 
 test('storage never throws and sessions expire', () => {

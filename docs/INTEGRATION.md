@@ -81,7 +81,7 @@ Legend: **[Vigie]** change in this repository · **[Orqea]** change in Orqea ·
       `VIGIE_SSO_SECRET`: `{ iss: "orqea-admin-console", aud: "vigie", operator: <operator id>, iat,
 exp: iat + 60, jti: <random uuid> }` (Orqea's existing admin handoff factory, which must
       add `jti`; `sub`/`name` are optional) and renders
-      `<iframe src="https://vigie.example/#sso=<jwt>">`. Mint a new token for each load.
+      `<iframe src="https://vigie.example/#sso=<jwt>&env=<dev|recette|prod>">` (`env`, optional, preselects the environment; any other value is ignored). Mint a new token for each load.
 - [ ] Reference implementation: `api/src/auth/jwt.js` (`signHs256`); test vectors:
       `api/test/auth.test.js`.
 
