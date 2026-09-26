@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "fastify": "^5.12.5",
-    "pg": "^8.23.0"
+    "pg": "^8.23.0",
+    "pino": "^10.3.1"
   },
   "devDependencies": {
     "@vitest/coverage-v8": "^5.0.2",
