@@ -1,4 +1,7 @@
 import { AppError } from './errors.js';
+import { parseProject } from './adapters/errors/glitchtip.js';
+import { DEFAULT_LOKI_SELECTOR } from './adapters/logs/loki.js';
+import { DEFAULT_PROMETHEUS_METRIC } from './adapters/metrics/prometheus.js';
 import { ENVS, FIGURA_TARGETS } from './env.js';
 
 export const MIN_SECRET_LENGTH = 32;
@@ -25,8 +28,23 @@ function perEnv(vars, prefix, envs = ENVS) {
 function errorsSources(vars) {
   const urls = perEnv(vars, 'VIGIE_ERRORS_URL');
   const tokens = perEnv(vars, 'VIGIE_ERRORS_TOKEN');
+  const projects = perEnv(vars, 'VIGIE_ERRORS_PROJECT');
   return Object.fromEntries(
-    ENVS.map((e) => [e, urls[e] ? { url: urls[e], token: tokens[e] } : null]),
+    ENVS.map((e) => {
+      const project = parseProject(projects[e]);
+      return [e, urls[e] && project ? { url: urls[e], token: tokens[e], project } : null];
+    }),
+  );
+}
+
+/** A Figura target is configured only with both its URL and a token of 32+ characters. */
+function figuraTargets(vars) {
+  const urls = perEnv(vars, 'VIGIE_FIGURA_URL', FIGURA_TARGETS);
+  return Object.fromEntries(
+    FIGURA_TARGETS.map((t) => {
+      const token = secretOrNull(vars[`VIGIE_FIGURA_TOKEN_${t.toUpperCase()}`]);
+      return [t, urls[t] && token ? { url: urls[t], token } : null];
+    }),
   );
 }
 
@@ -71,6 +89,7 @@ export function loadConfig(vars) {
       ENVS.map((e) => [e, secretOrNull(vars[`VIGIE_INGEST_SECRET_${e.toUpperCase()}`])]),
     ),
     ...secrets(vars),
+    ssoIssuer: nonEmpty(vars.VIGIE_SSO_ISSUER) ?? 'orqea-admin-console',
     sessionTtlSeconds: intOr(vars.VIGIE_SESSION_TTL_SECONDS, 1800, 60, 43200),
     allowedFrameAncestors: frameAncestors(vars.VIGIE_ALLOWED_FRAME_ANCESTORS),
     rawRetentionDays: intOr(vars.VIGIE_RAW_RETENTION_DAYS, 60, 1, 3650),
@@ -80,7 +99,9 @@ export function loadConfig(vars) {
       metrics: perEnv(vars, 'VIGIE_PROMETHEUS_URL'),
       errors: errorsSources(vars),
     },
-    figura: perEnv(vars, 'VIGIE_FIGURA_URL', FIGURA_TARGETS),
+    lokiSelector: nonEmpty(vars.VIGIE_LOKI_SELECTOR) ?? DEFAULT_LOKI_SELECTOR,
+    prometheusMetric: nonEmpty(vars.VIGIE_PROMETHEUS_METRIC) ?? DEFAULT_PROMETHEUS_METRIC,
+    figura: figuraTargets(vars),
     issues: { url: nonEmpty(vars.VIGIE_ISSUES_URL), token: nonEmpty(vars.VIGIE_ISSUES_TOKEN) },
     autoReplayTarget: autoReplayTarget(vars.VIGIE_AUTO_REPLAY_TARGET),
     detect: {

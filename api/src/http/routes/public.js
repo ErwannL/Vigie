@@ -36,11 +36,11 @@ export function registerPublicRoutes(app, deps) {
       throw new AppError('sso_not_configured', 503);
     }
     const now = clock.now();
-    const claims = verifySsoToken(req.body?.token, config.ssoSecret, now);
+    const claims = verifySsoToken(req.body?.token, config.ssoSecret, now, config.ssoIssuer);
     if (!(await repos.jti.consume(claims.jti, new Date(claims.exp * 1000)))) {
       throw new AppError('sso_replayed', 401);
     }
-    const name = typeof claims.name === 'string' ? claims.name : null;
+    const { name } = claims;
     const session = issueSession(
       { sub: claims.sub, name },
       config.sessionSecret,

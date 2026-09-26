@@ -1,23 +1,26 @@
-import { NotImplementedError } from '../../errors.js';
+import { bearer, expectShape, fetchJson } from '../http.js';
 
 /**
- * Real IssueSink towards Orqea's issue board. TO BE WRITTEN BY THE INTEGRATOR.
- *
- *   open(payload)        → POST  {url}/internal/vigie/issues        → { ref }
- *   update(ref, payload) → PATCH {url}/internal/vigie/issues/<ref>
- * with `Authorization: Bearer <token>`, through ../http.js fetchJson with timeoutMs.
- * The payload (see issuePayload in modules/incidents/report.js and docs/CONTRACT.md §4.4)
- * contains no user identities. Orqea turns it into a card on its issue board.
+ * Real IssueSink towards Orqea's issue board (VIGIE_ISSUES_URL, VIGIE_ISSUES_TOKEN).
+ *   open(payload)        → POST {url}                              → 201 { ref }
+ *   update(ref, payload) → PUT  {url}/{encodeURIComponent(ref)}    → 200
+ * The payload (docs/CONTRACT.md §5) contains no user identities.
  */
-export function createOrqeaIssueSink({ url, token, timeoutMs }) {
-  const fail = (what) => {
-    throw new NotImplementedError(what);
-  };
+export function createOrqeaIssueSink({ url, token, timeoutMs, fetchImpl = globalThis.fetch }) {
+  const base = url.replace(/\/+$/, '');
+  const call = (target, method, body) =>
+    fetchJson(target, { method, body, timeoutMs, fetchImpl, headers: bearer(token) });
   return {
     url,
     hasToken: token !== null,
     timeoutMs,
-    open: async () => fail('IssueSink.open'),
-    update: async () => fail('IssueSink.update'),
+    async open(payload) {
+      const res = await call(base, 'POST', payload);
+      expectShape(typeof res?.ref === 'string' && res.ref !== '', 'issues.ref');
+      return { ref: res.ref };
+    },
+    async update(ref, payload) {
+      await call(`${base}/${encodeURIComponent(ref)}`, 'PUT', payload);
+    },
   };
 }

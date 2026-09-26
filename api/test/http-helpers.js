@@ -15,7 +15,7 @@ export function ssoToken(clock, over = {}) {
   const t = Math.floor(clock.now().getTime() / 1000);
   return signHs256(
     {
-      iss: 'orqea',
+      iss: 'orqea-admin-console',
       aud: 'vigie',
       sub: 'op-1',
       name: 'Ada Lovelace',

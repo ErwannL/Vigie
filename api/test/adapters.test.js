@@ -1,16 +1,11 @@
 import { expect, test, vi } from 'vitest';
 import { createFakeErrorsSource } from '../src/adapters/errors/fake.js';
-import { createGlitchtipErrorsSource } from '../src/adapters/errors/glitchtip.js';
 import { createFiguraClient } from '../src/adapters/figura/client.js';
 import { createFakeFigura } from '../src/adapters/figura/fake.js';
-import { createHttpFigura } from '../src/adapters/figura/figura.js';
 import { fetchJson } from '../src/adapters/http.js';
 import { createFakeIssueSink } from '../src/adapters/issues/fake.js';
-import { createOrqeaIssueSink } from '../src/adapters/issues/orqea.js';
 import { createFakeLogsSource } from '../src/adapters/logs/fake.js';
-import { createLokiLogsSource } from '../src/adapters/logs/loki.js';
 import { createFakeMetricsSource } from '../src/adapters/metrics/fake.js';
-import { createPrometheusMetricsSource } from '../src/adapters/metrics/prometheus.js';
 import { adapterStatus, createAdapters } from '../src/adapters/registry.js';
 import { loadConfig } from '../src/config.js';
 import { fixedClock } from './helpers.js';
@@ -20,7 +15,7 @@ const at = (iso) => new Date(iso);
 const window = { from: at('2026-09-01T11:00:00Z'), to: at('2026-09-01T12:00:00Z') };
 
 test('fetchJson sends JSON with a timeout signal and returns the body', async () => {
-  const fetchImpl = vi.fn(async () => ({ ok: true, json: async () => ({ a: 1 }) }));
+  const fetchImpl = vi.fn(async () => ({ ok: true, text: async () => '{"a":1}' }));
   const body = await fetchJson('http://x/y', {
     method: 'POST',
     body: { q: 1 },
@@ -135,34 +130,6 @@ test('fake errors source counts occurrences in the window', async () => {
   ]);
 });
 
-test('real adapter stubs throw NotImplemented and keep their settings', async () => {
-  const loki = createLokiLogsSource({ url: 'http://loki', timeoutMs: 5 });
-  const prom = createPrometheusMetricsSource({ url: 'http://prom', timeoutMs: 5 });
-  const gt = createGlitchtipErrorsSource({ url: 'http://gt', token: null, timeoutMs: 5 });
-  const figura = createHttpFigura({ url: 'http://figura', timeoutMs: 5 });
-  const sink = createOrqeaIssueSink({ url: 'http://orqea', token: 't', timeoutMs: 5 });
-  expect([loki.url, prom.url, gt.url, gt.hasToken, figura.url, sink.hasToken]).toEqual([
-    'http://loki',
-    'http://prom',
-    'http://gt',
-    false,
-    'http://figura',
-    true,
-  ]);
-  for (const call of [
-    () => loki.query(),
-    () => prom.latency(),
-    () => gt.issues(),
-    () => figura.replay(),
-    () => figura.status(),
-    () => figura.pushPersonas(),
-    () => sink.open(),
-    () => sink.update(),
-  ]) {
-    await expect(call()).rejects.toMatchObject({ name: 'NotImplemented', code: 'not_implemented' });
-  }
-});
-
 const scenario = (targetEnv) => ({ targetEnv, steps: [{ action: 'visit', target: '/' }] });
 
 test('Figura never runs against prod: replay, status and personas refuse it before any call', async () => {
@@ -231,6 +198,8 @@ test('registry: configured → real, missing in development → fake, missing ot
       VIGIE_MODE: 'development',
       VIGIE_LOKI_URL_PROD: 'http://loki',
       VIGIE_FIGURA_URL_RECETTE: 'http://f',
+      VIGIE_FIGURA_TOKEN_RECETTE: 'f'.repeat(32),
+      VIGIE_FIGURA_URL_DEV: 'http://f-dev',
     }),
     { clock, fixtures: { prod: { logs: [], metrics: [], errors: [] } } },
   );
@@ -246,6 +215,7 @@ test('registry: configured → real, missing in development → fake, missing ot
   const prodMode = createAdapters(
     loadConfig({
       VIGIE_ERRORS_URL_DEV: 'http://gt',
+      VIGIE_ERRORS_PROJECT_DEV: 'org/proj',
       VIGIE_PROMETHEUS_URL_DEV: 'http://p',
       VIGIE_ISSUES_URL: 'http://o',
     }),

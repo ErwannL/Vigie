@@ -38,13 +38,14 @@ export function createAdapters(config, { clock, fixtures = {} }) {
           logs: pick(
             logs[env],
             config.mode,
-            (url) => createLokiLogsSource({ url, timeoutMs }),
+            (url) => createLokiLogsSource({ url, timeoutMs, selector: config.lokiSelector }),
             () => createFakeLogsSource(fx.logs, clock),
           ),
           metrics: pick(
             metrics[env],
             config.mode,
-            (url) => createPrometheusMetricsSource({ url, timeoutMs }),
+            (url) =>
+              createPrometheusMetricsSource({ url, timeoutMs, metric: config.prometheusMetric }),
             () => createFakeMetricsSource(fx.metrics, clock),
           ),
           errors: pick(
@@ -63,7 +64,7 @@ export function createAdapters(config, { clock, fixtures = {} }) {
       pick(
         config.figura[t],
         config.mode,
-        (url) => createHttpFigura({ url, timeoutMs }),
+        (s) => createHttpFigura({ ...s, timeoutMs }),
         () => createFakeFigura({ clock }),
       ),
     ]),

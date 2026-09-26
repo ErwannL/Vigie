@@ -231,6 +231,7 @@ export default {
   'errors.upstream_timeout': 'Un système connecté n’a pas répondu à temps.',
   'errors.upstream_unreachable': 'Un système connecté est injoignable.',
   'errors.upstream_error': 'Un système connecté a renvoyé une erreur.',
+  'errors.upstream_bad_response': 'Un système connecté a renvoyé une réponse inattendue.',
   'errors.compare_needs_distinct_envs': 'Choisissez deux environnements différents.',
   'errors.invalid_route': 'Choisissez une route.',
   'errors.session_not_configured': 'Les sessions Vigie ne sont pas configurées.',

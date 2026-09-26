@@ -20,6 +20,9 @@ test('defaults are safe: production mode, 60 days retention, no secrets', () => 
   expect(c.publicUrl).toBeNull();
   expect(c.port).toBe(3000);
   expect(c.figura).toEqual({ dev: null, recette: null });
+  expect(c.ssoIssuer).toBe('orqea-admin-console');
+  expect(c.lokiSelector).toBe('{container=~".*backend.*"}');
+  expect(c.prometheusMetric).toBe('orqea_http_request_duration_seconds_bucket');
 });
 
 test('reads per-environment sources, secrets and bounded integers', () => {
@@ -30,8 +33,18 @@ test('reads per-environment sources, secrets and bounded integers', () => {
     VIGIE_LOKI_URL_PROD: ' http://loki ',
     VIGIE_ERRORS_URL_RECETTE: 'http://gt',
     VIGIE_ERRORS_TOKEN_RECETTE: 'tok',
+    VIGIE_ERRORS_PROJECT_RECETTE: 'orqea/backend',
     VIGIE_ERRORS_URL_PROD: 'http://gt-prod',
+    VIGIE_ERRORS_PROJECT_PROD: 'orqea/backend',
+    VIGIE_ERRORS_URL_DEV: 'http://gt-dev',
+    VIGIE_ERRORS_PROJECT_DEV: 'not a project',
     VIGIE_FIGURA_URL_RECETTE: 'http://figura',
+    VIGIE_FIGURA_TOKEN_RECETTE: 'f'.repeat(32),
+    VIGIE_FIGURA_URL_DEV: 'http://figura-dev',
+    VIGIE_FIGURA_TOKEN_DEV: 'too-short',
+    VIGIE_SSO_ISSUER: 'custom-issuer',
+    VIGIE_LOKI_SELECTOR: '{app="x"}',
+    VIGIE_PROMETHEUS_METRIC: 'm_bucket',
     VIGIE_INGEST_SECRET_PROD: 'p'.repeat(32),
     VIGIE_INGEST_SECRET_DEV: 'short',
     VIGIE_ALLOWED_FRAME_ANCESTORS: "self, https://a.test 'none'",
@@ -41,9 +54,15 @@ test('reads per-environment sources, secrets and bounded integers', () => {
   expect(c.port).toBe(65535);
   expect(c.rawRetentionDays).toBe(1);
   expect(c.sources.logs).toEqual({ dev: null, recette: null, prod: 'http://loki' });
-  expect(c.sources.errors.recette).toEqual({ url: 'http://gt', token: 'tok' });
-  expect(c.sources.errors.prod).toEqual({ url: 'http://gt-prod', token: null });
-  expect(c.figura.recette).toBe('http://figura');
+  expect(c.sources.errors).toEqual({
+    dev: null,
+    recette: { url: 'http://gt', token: 'tok', project: 'orqea/backend' },
+    prod: { url: 'http://gt-prod', token: null, project: 'orqea/backend' },
+  });
+  expect(c.figura).toEqual({ dev: null, recette: { url: 'http://figura', token: 'f'.repeat(32) } });
+  expect(c.ssoIssuer).toBe('custom-issuer');
+  expect(c.lokiSelector).toBe('{app="x"}');
+  expect(c.prometheusMetric).toBe('m_bucket');
   expect(c.ingestSecrets.prod).toBe('p'.repeat(32));
   expect(c.ingestSecrets.dev).toBeNull();
   expect(c.allowedFrameAncestors).toBe("'self' https://a.test 'none'");

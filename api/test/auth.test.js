@@ -34,7 +34,7 @@ const SSO = 's'.repeat(40);
 const now = new Date('2026-09-01T12:00:00Z');
 const t = Math.floor(now.getTime() / 1000);
 const claims = (over = {}) => ({
-  iss: 'orqea',
+  iss: 'orqea-admin-console',
   aud: 'vigie',
   sub: 'op-1',
   name: 'Ada',
@@ -44,17 +44,29 @@ const claims = (over = {}) => ({
   ...over,
 });
 
+const ISSUER = 'orqea-admin-console';
+const verify = (token) => verifySsoToken(token, SSO, now, ISSUER);
+
 test('a valid 60-second handoff token is verified', () => {
-  expect(verifySsoToken(signHs256(claims(), SSO), SSO, now)).toMatchObject({
-    sub: 'op-1',
-    jti: 'j-1',
-  });
+  expect(verify(signHs256(claims(), SSO))).toMatchObject({ sub: 'op-1', name: 'Ada', jti: 'j-1' });
+});
+
+test("Orqea's handoff shape: `operator` stands in for `sub`, `name` defaults to the subject", () => {
+  const orqea = claims({ sub: undefined, name: undefined, operator: 'admin@orqea' });
+  expect(verify(signHs256(orqea, SSO))).toMatchObject({ sub: 'admin@orqea', name: 'admin@orqea' });
+  // `sub` wins over `operator` when both are present.
+  expect(verify(signHs256(claims({ operator: 'other' }), SSO)).sub).toBe('op-1');
+  // The issuer is a setting: the same token fails under another expected issuer.
+  expect(() => verifySsoToken(signHs256(claims(), SSO), SSO, now, 'orqea')).toThrow(
+    'sso_bad_issuer',
+  );
 });
 
 test.each([
   ['wrong issuer', claims({ iss: 'evil' }), 'sso_bad_issuer'],
   ['wrong audience', claims({ aud: 'figura' }), 'sso_bad_audience'],
-  ['missing sub', claims({ sub: '' }), 'sso_missing_claim'],
+  ['missing sub and operator', claims({ sub: '' }), 'sso_missing_claim'],
+  ['empty operator, no sub', claims({ sub: undefined, operator: '' }), 'sso_missing_claim'],
   ['missing jti', claims({ jti: undefined }), 'sso_missing_claim'],
   ['non-integer iat', claims({ iat: 'now' }), 'sso_missing_claim'],
   ['non-integer exp', claims({ exp: 1.5 }), 'sso_missing_claim'],
@@ -62,23 +74,19 @@ test.each([
   ['issued in the future', claims({ iat: t + 30, exp: t + 60 }), 'sso_not_yet_valid'],
   ['expired', claims({ iat: t - 70, exp: t - 10 }), 'sso_expired'],
 ])('rejects a token with %s', (_l, c, code) => {
-  expect(() => verifySsoToken(signHs256(c, SSO), SSO, now)).toThrow(code);
+  expect(() => verify(signHs256(c, SSO))).toThrow(code);
 });
 
 test('rejects malformed tokens, other algorithms and bad signatures', () => {
-  expect(() => verifySsoToken(undefined, SSO, now)).toThrow('sso_malformed');
-  expect(() => verifySsoToken('a.b', SSO, now)).toThrow('sso_malformed');
-  expect(() => verifySsoToken('!!.e30.x', SSO, now)).toThrow('sso_malformed');
-  expect(() => verifySsoToken(signHs256(claims(), SSO, { alg: 'none' }), SSO, now)).toThrow(
-    'sso_bad_algorithm',
-  );
-  expect(() => verifySsoToken(signHs256(claims(), 'o'.repeat(40)), SSO, now)).toThrow(
-    'sso_bad_signature',
-  );
+  expect(() => verify(undefined)).toThrow('sso_malformed');
+  expect(() => verify('a.b')).toThrow('sso_malformed');
+  expect(() => verify('!!.e30.x')).toThrow('sso_malformed');
+  expect(() => verify(signHs256(claims(), SSO, { alg: 'none' }))).toThrow('sso_bad_algorithm');
+  expect(() => verify(signHs256(claims(), 'o'.repeat(40)))).toThrow('sso_bad_signature');
   const header = Buffer.from('{"alg":"HS256"}').toString('base64url');
   const body = 'bm90IGpzb24';
   const sig = createHmac('sha256', SSO).update(`${header}.${body}`).digest('base64url');
-  expect(() => verifySsoToken(`${header}.${body}.${sig}`, SSO, now)).toThrow('sso_malformed');
+  expect(() => verify(`${header}.${body}.${sig}`)).toThrow('sso_malformed');
 });
 
 const SESSION = 'x'.repeat(40);

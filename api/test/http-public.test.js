@@ -173,15 +173,15 @@ test('SSO handoff: valid once, then replay is refused; bad tokens get codes', as
   const nameless = await app.inject({
     method: 'POST',
     url: '/auth/sso',
-    payload: { token: ssoToken(clock, { name: undefined }) },
+    payload: { token: ssoToken(clock, { sub: undefined, name: undefined, operator: 'op-2' }) },
   });
-  expect(nameless.json().operator).toEqual({ sub: 'op-1', name: null });
+  expect(nameless.json().operator).toEqual({ sub: 'op-2', name: 'op-2' });
   const audit = await container.db.query(
     "SELECT operator, operator_name FROM audit_log WHERE action = 'sso.login' ORDER BY id",
   );
   expect(audit.rows).toEqual([
     { operator: 'op-1', operator_name: 'Ada Lovelace' },
-    { operator: 'op-1', operator_name: null },
+    { operator: 'op-2', operator_name: 'op-2' },
   ]);
 });
 
