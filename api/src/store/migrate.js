@@ -9,7 +9,9 @@ export async function migrate(db, dir = MIGRATIONS_DIR) {
   await db.query(
     'CREATE TABLE IF NOT EXISTS schema_migrations (name text PRIMARY KEY, applied_at timestamptz NOT NULL DEFAULT now())',
   );
-  const done = new Set((await db.query('SELECT name FROM schema_migrations')).rows.map((r) => r.name));
+  const done = new Set(
+    (await db.query('SELECT name FROM schema_migrations')).rows.map((r) => r.name),
+  );
   const files = (await readdir(dir)).filter((f) => f.endsWith('.sql')).sort();
   const applied = [];
   for (const file of files.filter((f) => !done.has(f))) {

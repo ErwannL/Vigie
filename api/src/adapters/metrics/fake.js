@@ -11,7 +11,11 @@ export function createFakeMetricsSource(series, clock) {
       return series
         .filter((s) => route === null || s.route === route)
         .flatMap((s) =>
-          s.points.map((p) => ({ route: s.route, ts: minutesAgo(now, p.offsetMinutes), valueMs: p.valueMs })),
+          s.points.map((p) => ({
+            route: s.route,
+            ts: minutesAgo(now, p.offsetMinutes),
+            valueMs: p.valueMs,
+          })),
         )
         .filter((p) => within(p.ts, from, to))
         .map((p) => ({ ...p, ts: p.ts.toISOString() }));

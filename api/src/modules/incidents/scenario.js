@@ -11,7 +11,8 @@ const ACTIONS = ['visit', 'click', 'signup', 'login', 'use_feature', 'wait'];
 
 function toStep(row) {
   if (row.type === 'page_view' && row.page) return { action: 'visit', target: row.page };
-  if (row.type === 'feature_use' && row.feature) return { action: 'use_feature', target: row.feature };
+  if (row.type === 'feature_use' && row.feature)
+    return { action: 'use_feature', target: row.feature };
   if (row.type === 'click' && row.element) return { action: 'click', target: row.element };
   if (row.type === 'login' || row.type === 'signup') return { action: row.type, target: null };
   return null;
@@ -38,7 +39,7 @@ export function commonPath(rows) {
   }
   const best = [...counts.entries()]
     .filter(([, n]) => n >= MIN_PATH_SESSIONS)
-    .sort((a, b) => b[1] - a[1] || b[0].length - a[0].length || (a[0] < b[0] ? -1 : 1))[0];
+    .sort((a, b) => b[1] - a[1] || b[0].length - a[0].length || a[0].localeCompare(b[0]))[0];
   return best ? { steps: JSON.parse(best[0]), sessions: best[1] } : null;
 }
 

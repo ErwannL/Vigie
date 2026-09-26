@@ -1,4 +1,4 @@
-import Fastify from 'fastify';
+import Fastify, { LogController } from 'fastify';
 import { AppError } from '../errors.js';
 import { readSession } from '../auth/session.js';
 import { bearerToken } from '../auth/ingest.js';
@@ -44,8 +44,9 @@ export function loggerOptions(level, stream = undefined) {
 export function buildApp(deps) {
   const { config, clock } = deps;
   const app = Fastify({
-    logger: deps.logger ?? false,
-    disableRequestLogging: true,
+    logger: deps.logger,
+    // Fastify's own per-request lines are off; ours (below) are at debug level.
+    logController: new LogController({ disableRequestLogging: true }),
     bodyLimit: 64 * 1024,
   });
   app.addHook('onResponse', async (req, reply) => {
@@ -64,7 +65,11 @@ export function buildApp(deps) {
   /** preHandler for operator routes: requires Vigie's own session bearer. */
   app.decorate('requireSession', async (req) => {
     if (config.sessionSecret === null) throw new AppError('session_not_configured', 503);
-    const operator = readSession(bearerToken(req.headers.authorization), config.sessionSecret, clock.now());
+    const operator = readSession(
+      bearerToken(req.headers.authorization),
+      config.sessionSecret,
+      clock.now(),
+    );
     if (operator === null) throw new AppError('unauthorized', 401);
     req.operator = operator;
   });

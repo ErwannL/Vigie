@@ -89,17 +89,32 @@ function checkEnvelope(event, env, now, retentionDays) {
 }
 
 function checkAccount(account) {
-  check(optional(account.plan, (v) => PLANS.includes(v)), 'invalid_plan');
-  check(optional(account.seats, (v) => isInt(v, 1, 1000000)), 'invalid_seats');
-  check(optional(account.ageDays, (v) => isInt(v, 0, 100000)), 'invalid_age_days');
+  check(
+    optional(account.plan, (v) => PLANS.includes(v)),
+    'invalid_plan',
+  );
+  check(
+    optional(account.seats, (v) => isInt(v, 1, 1000000)),
+    'invalid_seats',
+  );
+  check(
+    optional(account.ageDays, (v) => isInt(v, 0, 100000)),
+    'invalid_age_days',
+  );
   check(optional(account.segment, matches(/^[a-z0-9_.-]{1,40}$/)), 'invalid_segment');
 }
 
 function checkContext(context) {
   check(optional(context.country, matches(/^[A-Z]{2}$/)), 'invalid_country');
   check(optional(context.locale, matches(/^[a-z]{2}(-[A-Z]{2})?$/)), 'invalid_locale');
-  check(optional(context.device, (v) => DEVICES.includes(v)), 'invalid_device');
-  check(optional(context.theme, (v) => THEMES.includes(v)), 'invalid_theme');
+  check(
+    optional(context.device, (v) => DEVICES.includes(v)),
+    'invalid_device',
+  );
+  check(
+    optional(context.theme, (v) => THEMES.includes(v)),
+    'invalid_theme',
+  );
   check(
     optional(context.appVersion, matches(/^\d{1,4}\.\d{1,4}\.\d{1,6}(-[0-9A-Za-z.]{1,20})?$/)),
     'invalid_app_version',
@@ -109,12 +124,21 @@ function checkContext(context) {
 function checkTarget(target) {
   check(optional(target.page, isTemplate), 'page_not_template');
   check(optional(target.element, isElementId), 'invalid_element');
-  check(optional(target.feature, (v) => FEATURES.items.includes(v)), 'unknown_feature');
+  check(
+    optional(target.feature, (v) => FEATURES.items.includes(v)),
+    'unknown_feature',
+  );
 }
 
 function checkPerf(perf) {
-  check(optional(perf.durationMs, (v) => isInt(v, 0, 3600000)), 'invalid_duration');
-  check(optional(perf.status, (v) => isInt(v, 100, 599)), 'invalid_status');
+  check(
+    optional(perf.durationMs, (v) => isInt(v, 0, 3600000)),
+    'invalid_duration',
+  );
+  check(
+    optional(perf.status, (v) => isInt(v, 100, 599)),
+    'invalid_status',
+  );
   check(optional(perf.route, isTemplate), 'route_not_template');
 }
 
@@ -125,7 +149,10 @@ function checkError(error) {
     'invalid_error_fingerprint',
   );
   const message = error.message;
-  check(optional(message, (v) => typeof v === 'string' && v.length <= 300), 'invalid_error_message');
+  check(
+    optional(message, (v) => typeof v === 'string' && v.length <= 300),
+    'invalid_error_message',
+  );
   check(absent(message) || !looksSensitive(message), 'unsanitised_error_message');
 }
 

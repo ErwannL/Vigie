@@ -31,6 +31,6 @@ export function errorsView(rows) {
       errorSessionRate: safeRate(r.error_sessions, r.sessions),
     });
   }
-  for (const list of Object.values(view)) list.sort((a, b) => (a.value < b.value ? -1 : 1));
+  for (const list of Object.values(view)) list.sort((a, b) => a.value.localeCompare(b.value));
   return view;
 }

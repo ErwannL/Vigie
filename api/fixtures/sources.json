@@ -1,1917 +1,1868 @@
 {
- "prod": {
-  "logs": [
-   {
-    "offsetMinutes": 1,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 2,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1810,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 3,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 4,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1830,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 5,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 6,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1850,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 7,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 8,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1870,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 9,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 10,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1890,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 11,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 12,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1910,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 13,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 14,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1930,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 15,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 16,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1950,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 17,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 18,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1970,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 19,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 20,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1990,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 21,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 22,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2010,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 23,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 24,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2030,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 25,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 26,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2050,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 27,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 28,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2070,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 29,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 30,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2090,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 31,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 32,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2110,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 33,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 34,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2130,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 35,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 36,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2150,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 37,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 38,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2170,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 39,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 40,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2190,
-    "status": 200,
-    "msgKind": "request.done"
-   }
-  ],
-  "metrics": [
-   {
-    "route": "/api/boards/:boardId",
-    "points": [
-     {
-      "offsetMinutes": 120,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 480,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 840,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1200,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1560,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1920,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 2280,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 2640,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3000,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3360,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3720,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4080,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4440,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4800,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5160,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5520,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5880,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6240,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6600,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6960,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 7320,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 7680,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8040,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8400,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8760,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9120,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9480,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9840,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5,
-      "valueMs": 2100
-     },
-     {
-      "offsetMinutes": 15,
-      "valueMs": 2100
-     },
-     {
-      "offsetMinutes": 25,
-      "valueMs": 2100
-     },
-     {
-      "offsetMinutes": 35,
-      "valueMs": 2100
-     },
-     {
-      "offsetMinutes": 45,
-      "valueMs": 2100
-     },
-     {
-      "offsetMinutes": 55,
-      "valueMs": 2100
-     }
+  "prod": {
+    "logs": [
+      {
+        "offsetMinutes": 1,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 2,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1810,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 3,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 4,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1830,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 5,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 6,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1850,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 7,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 8,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1870,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 9,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 10,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1890,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 11,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 12,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1910,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 13,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 14,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1930,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 15,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 16,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1950,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 17,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 18,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1970,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 19,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 20,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1990,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 21,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 22,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2010,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 23,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 24,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2030,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 25,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 26,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2050,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 27,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 28,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2070,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 29,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 30,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2090,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 31,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 32,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2110,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 33,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 34,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2130,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 35,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 36,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2150,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 37,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 38,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2170,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 39,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 40,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2190,
+        "status": 200,
+        "msgKind": "request.done"
+      }
+    ],
+    "metrics": [
+      {
+        "route": "/api/boards/:boardId",
+        "points": [
+          {
+            "offsetMinutes": 120,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 480,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 840,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1200,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1560,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1920,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 2280,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 2640,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3000,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3360,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3720,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4080,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4440,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4800,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5160,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5520,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5880,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6240,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6600,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6960,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 7320,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 7680,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8040,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8400,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8760,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9120,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9480,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9840,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5,
+            "valueMs": 2100
+          },
+          {
+            "offsetMinutes": 15,
+            "valueMs": 2100
+          },
+          {
+            "offsetMinutes": 25,
+            "valueMs": 2100
+          },
+          {
+            "offsetMinutes": 35,
+            "valueMs": 2100
+          },
+          {
+            "offsetMinutes": 45,
+            "valueMs": 2100
+          },
+          {
+            "offsetMinutes": 55,
+            "valueMs": 2100
+          }
+        ]
+      },
+      {
+        "route": "/api/cards",
+        "points": [
+          {
+            "offsetMinutes": 5,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9905,
+            "valueMs": 220
+          }
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "fingerprint": "TypeError:card-move-null",
+        "title": "TypeError in card move handler",
+        "route": "/api/cards/:cardId/move",
+        "occurrences": [
+          2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25,
+          26, 27, 28, 29, 30, 31, 3000, 6000
+        ]
+      },
+      {
+        "fingerprint": "ChunkLoadError:app",
+        "title": "Chunk failed to load",
+        "occurrences": [100, 2000, 5000, 9000]
+      }
     ]
-   },
-   {
-    "route": "/api/cards",
-    "points": [
-     {
-      "offsetMinutes": 5,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9905,
-      "valueMs": 220
-     }
+  },
+  "recette": {
+    "logs": [
+      {
+        "offsetMinutes": 1,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 2,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1810,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 3,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 4,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1830,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 5,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 6,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1850,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 7,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 8,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1870,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 9,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 10,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1890,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 11,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 12,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1910,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 13,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 14,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1930,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 15,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 16,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1950,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 17,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 18,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1970,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 19,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 20,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1990,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 21,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 22,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2010,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 23,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 24,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2030,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 25,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 26,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2050,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 27,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 28,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2070,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 29,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 30,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2090,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 31,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 32,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2110,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 33,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 34,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2130,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 35,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 36,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2150,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 37,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 38,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2170,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 39,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 40,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2190,
+        "status": 200,
+        "msgKind": "request.done"
+      }
+    ],
+    "metrics": [
+      {
+        "route": "/api/boards/:boardId",
+        "points": [
+          {
+            "offsetMinutes": 120,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 480,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 840,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1200,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1560,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1920,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 2280,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 2640,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3000,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3360,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3720,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4080,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4440,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4800,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5160,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5520,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5880,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6240,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6600,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6960,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 7320,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 7680,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8040,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8400,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8760,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9120,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9480,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9840,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 15,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 25,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 35,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 45,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 55,
+            "valueMs": 330
+          }
+        ]
+      },
+      {
+        "route": "/api/cards",
+        "points": [
+          {
+            "offsetMinutes": 5,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9905,
+            "valueMs": 220
+          }
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "fingerprint": "TypeError:card-move-null",
+        "title": "TypeError in card move handler",
+        "route": "/api/cards/:cardId/move",
+        "occurrences": [3000]
+      },
+      {
+        "fingerprint": "ChunkLoadError:app",
+        "title": "Chunk failed to load",
+        "occurrences": [100, 2000, 5000, 9000]
+      }
     ]
-   }
-  ],
-  "errors": [
-   {
-    "fingerprint": "TypeError:card-move-null",
-    "title": "TypeError in card move handler",
-    "route": "/api/cards/:cardId/move",
-    "occurrences": [
-     2,
-     3,
-     4,
-     5,
-     6,
-     7,
-     8,
-     9,
-     10,
-     11,
-     12,
-     13,
-     14,
-     15,
-     16,
-     17,
-     18,
-     19,
-     20,
-     21,
-     22,
-     23,
-     24,
-     25,
-     26,
-     27,
-     28,
-     29,
-     30,
-     31,
-     3000,
-     6000
+  },
+  "dev": {
+    "logs": [
+      {
+        "offsetMinutes": 1,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 2,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1810,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 3,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 4,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1830,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 5,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 6,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1850,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 7,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 8,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1870,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 9,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 10,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1890,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 11,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 12,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1910,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 13,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 14,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1930,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 15,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 16,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1950,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 17,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 18,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1970,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 19,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 20,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 1990,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 21,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 22,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2010,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 23,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 24,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2030,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 25,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 26,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2050,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 27,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 28,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2070,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 29,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 30,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2090,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 31,
+        "level": "error",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 32,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2110,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 33,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 34,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2130,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 35,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 36,
+        "level": "error",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2150,
+        "status": 500,
+        "msgKind": "request.failed"
+      },
+      {
+        "offsetMinutes": 37,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 38,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2170,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 39,
+        "level": "info",
+        "route": "/api/cards/:cardId/move",
+        "durationMs": 120,
+        "status": 200,
+        "msgKind": "request.done"
+      },
+      {
+        "offsetMinutes": 40,
+        "level": "info",
+        "route": "/api/boards/:boardId",
+        "durationMs": 2190,
+        "status": 200,
+        "msgKind": "request.done"
+      }
+    ],
+    "metrics": [
+      {
+        "route": "/api/boards/:boardId",
+        "points": [
+          {
+            "offsetMinutes": 120,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 480,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 840,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1200,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1560,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 1920,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 2280,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 2640,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3000,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3360,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 3720,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4080,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4440,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 4800,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5160,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5520,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5880,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6240,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6600,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 6960,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 7320,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 7680,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8040,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8400,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 8760,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9120,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9480,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 9840,
+            "valueMs": 340
+          },
+          {
+            "offsetMinutes": 5,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 15,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 25,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 35,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 45,
+            "valueMs": 330
+          },
+          {
+            "offsetMinutes": 55,
+            "valueMs": 330
+          }
+        ]
+      },
+      {
+        "route": "/api/cards",
+        "points": [
+          {
+            "offsetMinutes": 5,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 1805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 2705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 3905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 4805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 5705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 6905,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7205,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7505,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 7805,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8105,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8405,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 8705,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9005,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9305,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9605,
+            "valueMs": 220
+          },
+          {
+            "offsetMinutes": 9905,
+            "valueMs": 220
+          }
+        ]
+      }
+    ],
+    "errors": [
+      {
+        "fingerprint": "TypeError:card-move-null",
+        "title": "TypeError in card move handler",
+        "route": "/api/cards/:cardId/move",
+        "occurrences": [3000]
+      },
+      {
+        "fingerprint": "ChunkLoadError:app",
+        "title": "Chunk failed to load",
+        "occurrences": [100, 2000, 5000, 9000]
+      }
     ]
-   },
-   {
-    "fingerprint": "ChunkLoadError:app",
-    "title": "Chunk failed to load",
-    "occurrences": [
-     100,
-     2000,
-     5000,
-     9000
-    ]
-   }
-  ]
- },
- "recette": {
-  "logs": [
-   {
-    "offsetMinutes": 1,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 2,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1810,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 3,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 4,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1830,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 5,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 6,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1850,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 7,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 8,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1870,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 9,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 10,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1890,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 11,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 12,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1910,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 13,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 14,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1930,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 15,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 16,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1950,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 17,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 18,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1970,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 19,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 20,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1990,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 21,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 22,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2010,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 23,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 24,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2030,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 25,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 26,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2050,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 27,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 28,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2070,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 29,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 30,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2090,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 31,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 32,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2110,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 33,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 34,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2130,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 35,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 36,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2150,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 37,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 38,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2170,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 39,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 40,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2190,
-    "status": 200,
-    "msgKind": "request.done"
-   }
-  ],
-  "metrics": [
-   {
-    "route": "/api/boards/:boardId",
-    "points": [
-     {
-      "offsetMinutes": 120,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 480,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 840,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1200,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1560,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1920,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 2280,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 2640,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3000,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3360,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3720,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4080,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4440,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4800,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5160,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5520,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5880,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6240,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6600,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6960,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 7320,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 7680,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8040,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8400,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8760,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9120,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9480,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9840,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 15,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 25,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 35,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 45,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 55,
-      "valueMs": 330
-     }
-    ]
-   },
-   {
-    "route": "/api/cards",
-    "points": [
-     {
-      "offsetMinutes": 5,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9905,
-      "valueMs": 220
-     }
-    ]
-   }
-  ],
-  "errors": [
-   {
-    "fingerprint": "TypeError:card-move-null",
-    "title": "TypeError in card move handler",
-    "route": "/api/cards/:cardId/move",
-    "occurrences": [
-     3000
-    ]
-   },
-   {
-    "fingerprint": "ChunkLoadError:app",
-    "title": "Chunk failed to load",
-    "occurrences": [
-     100,
-     2000,
-     5000,
-     9000
-    ]
-   }
-  ]
- },
- "dev": {
-  "logs": [
-   {
-    "offsetMinutes": 1,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 2,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1810,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 3,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 4,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1830,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 5,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 6,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1850,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 7,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 8,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1870,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 9,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 10,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1890,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 11,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 12,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1910,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 13,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 14,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1930,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 15,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 16,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1950,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 17,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 18,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1970,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 19,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 20,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 1990,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 21,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 22,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2010,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 23,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 24,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2030,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 25,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 26,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2050,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 27,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 28,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2070,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 29,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 30,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2090,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 31,
-    "level": "error",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 32,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2110,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 33,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 34,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2130,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 35,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 36,
-    "level": "error",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2150,
-    "status": 500,
-    "msgKind": "request.failed"
-   },
-   {
-    "offsetMinutes": 37,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 38,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2170,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 39,
-    "level": "info",
-    "route": "/api/cards/:cardId/move",
-    "durationMs": 120,
-    "status": 200,
-    "msgKind": "request.done"
-   },
-   {
-    "offsetMinutes": 40,
-    "level": "info",
-    "route": "/api/boards/:boardId",
-    "durationMs": 2190,
-    "status": 200,
-    "msgKind": "request.done"
-   }
-  ],
-  "metrics": [
-   {
-    "route": "/api/boards/:boardId",
-    "points": [
-     {
-      "offsetMinutes": 120,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 480,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 840,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1200,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1560,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 1920,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 2280,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 2640,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3000,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3360,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 3720,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4080,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4440,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 4800,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5160,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5520,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5880,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6240,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6600,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 6960,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 7320,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 7680,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8040,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8400,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 8760,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9120,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9480,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 9840,
-      "valueMs": 340
-     },
-     {
-      "offsetMinutes": 5,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 15,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 25,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 35,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 45,
-      "valueMs": 330
-     },
-     {
-      "offsetMinutes": 55,
-      "valueMs": 330
-     }
-    ]
-   },
-   {
-    "route": "/api/cards",
-    "points": [
-     {
-      "offsetMinutes": 5,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 1805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 2705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 3905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 4805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 5705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 6905,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7205,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7505,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 7805,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8105,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8405,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 8705,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9005,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9305,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9605,
-      "valueMs": 220
-     },
-     {
-      "offsetMinutes": 9905,
-      "valueMs": 220
-     }
-    ]
-   }
-  ],
-  "errors": [
-   {
-    "fingerprint": "TypeError:card-move-null",
-    "title": "TypeError in card move handler",
-    "route": "/api/cards/:cardId/move",
-    "occurrences": [
-     3000
-    ]
-   },
-   {
-    "fingerprint": "ChunkLoadError:app",
-    "title": "Chunk failed to load",
-    "occurrences": [
-     100,
-     2000,
-     5000,
-     9000
-    ]
-   }
-  ]
- }
+  }
 }

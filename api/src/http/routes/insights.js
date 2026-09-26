@@ -6,7 +6,9 @@ export function registerInsightRoutes(app, deps) {
   const guarded = { preHandler: app.requireSession };
   const insights = services.insights;
 
-  app.get('/v1/insights/usage', guarded, async (req) => insights.usage(req.query.env, req.query.days));
+  app.get('/v1/insights/usage', guarded, async (req) =>
+    insights.usage(req.query.env, req.query.days),
+  );
   app.get('/v1/insights/landing', guarded, async (req) =>
     insights.landing(req.query.env, req.query.days),
   );

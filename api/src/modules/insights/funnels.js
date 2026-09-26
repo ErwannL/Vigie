@@ -15,7 +15,8 @@ export function reachedSteps(funnel, events) {
   for (const e of events) {
     const step = funnel.steps[i];
     const at = new Date(e.occurred_at).getTime();
-    const late = step.minDaysAfterStart === undefined || at - start >= step.minDaysAfterStart * DAY_MS;
+    const late =
+      step.minDaysAfterStart === undefined || at - start >= step.minDaysAfterStart * DAY_MS;
     if (matches(step.match, e) && late) {
       start ??= at;
       i += 1;
@@ -65,11 +66,13 @@ export function groupSubjects(subjects, by) {
 export function conversions(subjects) {
   return FUNNELS.items.flatMap((funnel) => {
     const counts = stepCounts(funnel, subjects);
-    return funnel.steps.slice(1).flatMap((step, i) =>
-      step.minDaysAfterStart === undefined
-        ? [{ funnel: funnel.key, step: step.key, entrants: counts[i], converted: counts[i + 1] }]
-        : [],
-    );
+    return funnel.steps
+      .slice(1)
+      .flatMap((step, i) =>
+        step.minDaysAfterStart === undefined
+          ? [{ funnel: funnel.key, step: step.key, entrants: counts[i], converted: counts[i + 1] }]
+          : [],
+      );
   });
 }
 

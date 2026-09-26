@@ -30,7 +30,12 @@ export function createRandom(seed) {
     /** Log-normal-ish duration around `median` ms. */
     duration(median) {
       const u = Math.max(next(), 1e-6);
-      return Math.max(5, Math.round(median * Math.exp(0.45 * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * next()))));
+      return Math.max(
+        5,
+        Math.round(
+          median * Math.exp(0.45 * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * next())),
+        ),
+      );
     },
   };
 }

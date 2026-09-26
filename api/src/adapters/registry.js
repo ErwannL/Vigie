@@ -35,8 +35,11 @@ export function createAdapters(config, { clock, fixtures = {} }) {
       return [
         env,
         {
-          logs: pick(logs[env], config.mode, (url) => createLokiLogsSource({ url, timeoutMs }), () =>
-            createFakeLogsSource(fx.logs, clock),
+          logs: pick(
+            logs[env],
+            config.mode,
+            (url) => createLokiLogsSource({ url, timeoutMs }),
+            () => createFakeLogsSource(fx.logs, clock),
           ),
           metrics: pick(
             metrics[env],
@@ -57,8 +60,11 @@ export function createAdapters(config, { clock, fixtures = {} }) {
   const figuraSlots = Object.fromEntries(
     FIGURA_TARGETS.map((t) => [
       t,
-      pick(config.figura[t], config.mode, (url) => createHttpFigura({ url, timeoutMs }), () =>
-        createFakeFigura(),
+      pick(
+        config.figura[t],
+        config.mode,
+        (url) => createHttpFigura({ url, timeoutMs }),
+        () => createFakeFigura(),
       ),
     ]),
   );

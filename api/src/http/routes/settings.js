@@ -48,6 +48,10 @@ export function registerSettingsRoutes(app, deps) {
     if (typeof req.query.route !== 'string') throw new AppError('invalid_route', 400);
     const days = Math.min(Math.max(Number.parseInt(req.query.days, 10) || 14, 1), 90);
     const from = new Date(clock.now().getTime() - days * 86400000).toISOString().slice(0, 10);
-    return { route: req.query.route, days, series: await compareRoute(db, envs, req.query.route, from) };
+    return {
+      route: req.query.route,
+      days,
+      series: await compareRoute(db, envs, req.query.route, from),
+    };
   });
 }

@@ -9,7 +9,10 @@ import { migrate } from './store/migrate.js';
 export async function startApi(vars, { signals = process, logStream } = {}) {
   const container = createContainer(vars, { logStream });
   await migrate(container.db);
-  const app = buildApp({ ...container, logger: loggerOptions(container.config.logLevel, logStream) });
+  const app = buildApp({
+    ...container,
+    logger: loggerOptions(container.config.logLevel, logStream),
+  });
   await app.listen({ host: container.config.host, port: container.config.port });
   const stop = async () => {
     await app.close();

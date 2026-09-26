@@ -72,7 +72,9 @@ export function derivePersonaSet({ sourceEnv, targetEnv, window, groups, feature
   assertEnv(sourceEnv);
   assertFiguraTarget(targetEnv);
   const byPersona = groupSubjects(
-    subjects.map((events) => events.map((e) => ({ ...e, persona: e.plan && e.device ? `${e.plan}|${e.device}` : null }))),
+    subjects.map((events) =>
+      events.map((e) => ({ ...e, persona: e.plan && e.device ? `${e.plan}|${e.device}` : null })),
+    ),
     'persona',
   );
   const personas = groups
@@ -82,7 +84,7 @@ export function derivePersonaSet({ sourceEnv, targetEnv, window, groups, feature
       const weights = features
         .filter((f) => f.plan === g.plan && f.device === g.device)
         .map((f) => [f.feature, round3(f.sessions / g.sessions)])
-        .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1));
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
       return {
         name: `${g.plan}-${g.device}`,
         traits: { plan: g.plan, device: g.device, locale: g.locale ?? 'en' },
@@ -97,6 +99,13 @@ export function derivePersonaSet({ sourceEnv, targetEnv, window, groups, feature
         sample: { people: g.users, sessions: g.sessions, window },
       };
     })
-    .sort((a, b) => b.sample.people - a.sample.people || (a.name < b.name ? -1 : 1));
-  return { schema: PERSONA_SET_SCHEMA, kind: 'vigie.persona_set', sourceEnv, targetEnv, window, personas };
+    .sort((a, b) => b.sample.people - a.sample.people || a.name.localeCompare(b.name));
+  return {
+    schema: PERSONA_SET_SCHEMA,
+    kind: 'vigie.persona_set',
+    sourceEnv,
+    targetEnv,
+    window,
+    personas,
+  };
 }

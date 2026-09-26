@@ -60,7 +60,7 @@ export function loadConfig(vars) {
   return Object.freeze({
     mode,
     host: nonEmpty(vars.VIGIE_HOST) ?? '0.0.0.0',
-    port: intOr(vars.VIGIE_PORT, 3000, 1, 65535),
+    port: intOr(vars.VIGIE_PORT, 3000, 0, 65535),
     databaseUrl: nonEmpty(vars.DATABASE_URL) ?? 'postgres://vigie:vigie@localhost:5432/vigie',
     publicUrl: nonEmpty(vars.VIGIE_PUBLIC_URL),
     logLevel: nonEmpty(vars.VIGIE_LOG_LEVEL) ?? 'info',

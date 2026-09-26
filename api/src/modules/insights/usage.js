@@ -93,12 +93,20 @@ export async function dailyUsage(db, env, fromDay, toDay) {
 }
 
 function lift(withRate, withoutRate) {
-  return withRate === null || withoutRate === null ? null : Number((withRate - withoutRate).toFixed(3));
+  return withRate === null || withoutRate === null
+    ? null
+    : Number((withRate - withoutRate).toFixed(3));
 }
 
 export function outcomeView(o) {
-  const retention = [safeRate(o.retained_with, o.early_with), safeRate(o.retained_without, o.early_without)];
-  const upgrade = [safeRate(o.upgraded_with, o.users_with), safeRate(o.upgraded_without, o.users_without)];
+  const retention = [
+    safeRate(o.retained_with, o.early_with),
+    safeRate(o.retained_without, o.early_without),
+  ];
+  const upgrade = [
+    safeRate(o.upgraded_with, o.users_with),
+    safeRate(o.upgraded_without, o.users_without),
+  ];
   return {
     retentionWith: retention[0],
     retentionWithout: retention[1],

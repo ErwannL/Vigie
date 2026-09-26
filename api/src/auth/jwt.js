@@ -42,7 +42,9 @@ export function verifySsoToken(token, secret, now) {
   if (parts.length !== 3) throw new AppError('sso_malformed', 401);
   const header = decodePart(parts[0]);
   if (header.alg !== 'HS256') throw new AppError('sso_bad_algorithm', 401);
-  const expected = createHmac('sha256', secret).update(`${parts[0]}.${parts[1]}`).digest('base64url');
+  const expected = createHmac('sha256', secret)
+    .update(`${parts[0]}.${parts[1]}`)
+    .digest('base64url');
   if (!safeEqual(parts[2], expected)) throw new AppError('sso_bad_signature', 401);
   const claims = decodePart(parts[1]);
   checkClaims(claims, Math.floor(now.getTime() / 1000));

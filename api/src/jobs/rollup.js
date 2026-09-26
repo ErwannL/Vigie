@@ -44,9 +44,7 @@ export async function compareRoute(db, envs, route, fromDay) {
   return Object.fromEntries(
     envs.map((env) => [
       env,
-      rows
-        .filter((r) => r.env === env)
-        .map(({ env: _env, ...rest }) => rest),
+      rows.filter((r) => r.env === env).map(({ env: _env, ...rest }) => rest),
     ]),
   );
 }

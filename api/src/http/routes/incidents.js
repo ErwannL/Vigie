@@ -36,7 +36,11 @@ export function registerIncidentRoutes(app, deps) {
   }));
 
   app.post('/v1/incidents/:id/resolve', guarded, async (req) => ({
-    incident: await services.incidents.resolve(assertEnv(req.query.env), incidentId(req), req.operator),
+    incident: await services.incidents.resolve(
+      assertEnv(req.query.env),
+      incidentId(req),
+      req.operator,
+    ),
   }));
 
   app.post('/v1/detect', guarded, async (req) =>

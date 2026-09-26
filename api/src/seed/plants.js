@@ -1,4 +1,4 @@
-import { PLANTED, appSession, createWorld, existingAccount, newVisitor } from './generate.js';
+import { PLANTED, createWorld, existingAccount, newVisitor } from './generate.js';
 
 const MIN = 60000;
 
@@ -42,7 +42,9 @@ export function plantErrorSpike(world, sessions = 45) {
   for (let i = 0; i < sessions; i += 1) {
     const ctx = plantedContext(world, world.rng.int(15, 50));
     world.emit(ctx, 'page_view', 'app', { target: { page: '/board/:boardId' } });
-    world.emit(ctx, 'feature_use', 'app', { target: { page: '/board/:boardId', feature: 'card.move' } });
+    world.emit(ctx, 'feature_use', 'app', {
+      target: { page: '/board/:boardId', feature: 'card.move' },
+    });
     world.emit(ctx, 'server_error', 'backend', {
       perf: { route: PLANTED.errorRoute, status: 500 },
       target: { feature: 'card.move' },
@@ -62,7 +64,9 @@ export function plantRageClicks(world, sessions = 8) {
     const start = ctx.t;
     for (let c = 0; c < 5; c += 1) {
       ctx.t = start + c * 800;
-      world.emit(ctx, 'click', 'app', { target: { page: PLANTED.ragePage, element: PLANTED.rageElement } });
+      world.emit(ctx, 'click', 'app', {
+        target: { page: PLANTED.ragePage, element: PLANTED.rageElement },
+      });
     }
   }
 }
@@ -86,7 +90,10 @@ export function normalTraffic(world, { visitors, recentVisitors }) {
  */
 export function generateDemo(now, { scale = 1 } = {}) {
   const prod = createWorld('prod', 42, now);
-  normalTraffic(prod, { visitors: Math.round(3000 * scale), recentVisitors: Math.round(250 * scale) });
+  normalTraffic(prod, {
+    visitors: Math.round(3000 * scale),
+    recentVisitors: Math.round(250 * scale),
+  });
   plantSlowRoute(prod);
   plantErrorSpike(prod);
   plantRageClicks(prod);

@@ -15,11 +15,13 @@ export async function seedDemo(container, { scale = 1 } = {}) {
   const summary = {};
   for (const env of ENVS) {
     let accepted = 0;
-    const rejected = {};
+    let rejected = 0;
     for (let i = 0; i < data[env].length; i += BATCH) {
-      const result = await container.collector.ingest(env, { events: data[env].slice(i, i + BATCH) });
+      const result = await container.collector.ingest(env, {
+        events: data[env].slice(i, i + BATCH),
+      });
       accepted += result.accepted;
-      for (const r of result.rejected) rejected[r.code] = (rejected[r.code] ?? 0) + 1;
+      rejected += result.rejected.length;
     }
     const from = new Date(now.getTime() - 40 * DAY).toISOString().slice(0, 10);
     await rollup(container.db, env, from, now.toISOString().slice(0, 10));

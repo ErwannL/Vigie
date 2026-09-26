@@ -112,7 +112,12 @@ function newContext(world, t, overrides = {}) {
 
 function apiCall(world, ctx, route, feature = null) {
   const perf = { route, durationMs: world.rng.duration(ROUTE_MEDIANS[route]), status: 200 };
-  return world.emit(ctx, 'api_request', 'backend', feature ? { perf, target: { feature } } : { perf });
+  return world.emit(
+    ctx,
+    'api_request',
+    'backend',
+    feature ? { perf, target: { feature } } : { perf },
+  );
 }
 
 function useFeature(world, ctx, feature, page = '/board/:boardId') {
@@ -128,10 +133,14 @@ function useFeature(world, ctx, feature, page = '/board/:boardId') {
 }
 
 function paywall(world, ctx) {
-  world.emit(ctx, 'paywall_hit', 'app', { target: { page: '/board/:boardId', feature: 'rules.edit' } });
+  world.emit(ctx, 'paywall_hit', 'app', {
+    target: { page: '/board/:boardId', feature: 'rules.edit' },
+  });
   if (world.rng.chance(0.2)) {
     world.emit(ctx, 'page_view', 'app', { target: { page: '/settings/billing' } });
-    world.emit(ctx, 'upgrade', 'app', { target: { page: '/settings/billing', feature: 'billing.upgrade' } });
+    world.emit(ctx, 'upgrade', 'app', {
+      target: { page: '/settings/billing', feature: 'billing.upgrade' },
+    });
     ctx.account.plan = 'pro';
   }
 }
@@ -145,7 +154,8 @@ export function appSession(world, ctx) {
   apiCall(world, ctx, '/api/boards/:boardId');
   const plan = ctx.account.plan;
   const odds = { ...BASE_FEATURES, ...PLAN_FEATURES[plan] };
-  for (const [feature, p] of Object.entries(odds)) if (rng.chance(p)) useFeature(world, ctx, feature);
+  for (const [feature, p] of Object.entries(odds))
+    if (rng.chance(p)) useFeature(world, ctx, feature);
   if (plan === 'free' && rng.chance(0.1)) paywall(world, ctx);
   if (rng.chance(0.02)) {
     const fingerprint = rng.pick(['ChunkLoadError:app', 'TypeError:calendar-render']);
@@ -160,9 +170,14 @@ export function appSession(world, ctx) {
 function landingVisit(world, ctx) {
   world.emit(ctx, 'page_view', 'landing', { target: { page: '/' } });
   const { rng } = world;
-  if (rng.chance(0.5)) world.emit(ctx, 'click', 'landing', { target: { page: '/', element: 'landing.hero.cta' } });
-  if (rng.chance(0.2)) world.emit(ctx, 'click', 'landing', { target: { page: '/', element: 'landing.pricing.toggle' } });
-  if (rng.chance(0.1)) world.emit(ctx, 'click', 'landing', { target: { page: '/', element: 'landing.features.tab' } });
+  if (rng.chance(0.5))
+    world.emit(ctx, 'click', 'landing', { target: { page: '/', element: 'landing.hero.cta' } });
+  if (rng.chance(0.2))
+    world.emit(ctx, 'click', 'landing', {
+      target: { page: '/', element: 'landing.pricing.toggle' },
+    });
+  if (rng.chance(0.1))
+    world.emit(ctx, 'click', 'landing', { target: { page: '/', element: 'landing.features.tab' } });
 }
 
 /** A first-time visitor: landing, maybe signup, first board, first card, day-7 return. */
@@ -196,9 +211,16 @@ export function existingAccount(world) {
   const activity = rng.weighted({ occasional: 4, regular: 4, power: 2 });
   const sessions = { occasional: 2, regular: 7, power: 20 }[activity];
   const ctx = newContext(world, 0, { user: rng.id('u') });
-  ctx.account = { plan, seats: rng.int(...SEATS[plan]), ageDays: rng.chance(0.1) ? rng.int(1, 13) : rng.int(30, 900) };
+  ctx.account = {
+    plan,
+    seats: rng.int(...SEATS[plan]),
+    ageDays: rng.chance(0.1) ? rng.int(1, 13) : rng.int(30, 900),
+  };
   for (let i = 0; i < sessions; i += 1) {
-    Object.assign(ctx, { t: world.now - rng.int(2 * 60, 28 * 24 * 60) * MIN, session: rng.id('s') });
+    Object.assign(ctx, {
+      t: world.now - rng.int(2 * 60, 28 * 24 * 60) * MIN,
+      session: rng.id('s'),
+    });
     if (rng.chance(0.3)) {
       landingVisit(world, ctx);
       world.emit(ctx, 'click', 'landing', { target: { page: '/', element: 'landing.nav.login' } });

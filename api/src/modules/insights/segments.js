@@ -39,12 +39,12 @@ export function segmentsView(rows) {
     dims.map((d) => [
       d,
       [...tally((a) => a[d]).entries()]
-        .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))
+        .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
         .map(([value, n]) => ({ value, accounts: mask(n) })),
     ]),
   );
   const segments = [...tally((a) => dims.map((d) => a[d]).join('|')).entries()]
-    .sort((a, b) => b[1] - a[1] || (a[0] < b[0] ? -1 : 1))
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .map(([key, n]) => {
       const [plan, seats, tenureValue, activity] = key.split('|');
       return { plan, seats, tenure: tenureValue, activity, accounts: mask(n) };

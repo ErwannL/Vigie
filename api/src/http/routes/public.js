@@ -41,7 +41,12 @@ export function registerPublicRoutes(app, deps) {
       throw new AppError('sso_replayed', 401);
     }
     const name = typeof claims.name === 'string' ? claims.name : null;
-    const session = issueSession({ sub: claims.sub, name }, config.sessionSecret, now, config.sessionTtlSeconds);
+    const session = issueSession(
+      { sub: claims.sub, name },
+      config.sessionSecret,
+      now,
+      config.sessionTtlSeconds,
+    );
     await repos.audit.record({ operator: claims.sub, operatorName: name, action: 'sso.login' });
     return { ...session, operator: { sub: claims.sub, name } };
   });

@@ -3,9 +3,7 @@
  * only templates, catalogue keys, segment shares and numbers.
  */
 export function issuePayload(incident, publicUrl) {
-  const link = publicUrl
-    ? [`${publicUrl}/#/incidents/${incident.id}?env=${incident.env}`]
-    : [];
+  const link = publicUrl ? [`${publicUrl}/#/incidents/${incident.id}?env=${incident.env}`] : [];
   return {
     schema: 1,
     source: 'vigie',
