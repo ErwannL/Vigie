@@ -50,13 +50,13 @@ export const incident = {
     {
       kind: 'latency',
       source: 'events',
-      numbers: { currentP95Ms: 3763, baselineP95Ms: 340 },
+      numbers: { currentP95Ms: 3763, baselineP95Ms: 340, thresholds: { minRatio: 1.5 } },
       detectedAt: '2026-09-01T12:00:00.000Z',
     },
     {
       kind: 'log_evidence',
       source: 'logs',
-      numbers: { lines: 20 },
+      numbers: { lines: 20, msgKinds: ['a', 'b'], error: null },
       detectedAt: '2026-09-01T12:00:00.000Z',
     },
   ],

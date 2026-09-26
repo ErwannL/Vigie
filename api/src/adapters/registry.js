@@ -64,7 +64,7 @@ export function createAdapters(config, { clock, fixtures = {} }) {
         config.figura[t],
         config.mode,
         (url) => createHttpFigura({ url, timeoutMs }),
-        () => createFakeFigura(),
+        () => createFakeFigura({ clock }),
       ),
     ]),
   );

@@ -149,6 +149,7 @@ test('incident workflow over HTTP: detect, list, detail, replay in recette, reso
   });
   expect([conflict.statusCode, conflict.json()]).toEqual([409, { error: 'invalid_transition' }]);
   await container.services.incidents.pollReplays('prod');
+  clock.advance(20000);
   await container.services.incidents.pollReplays('prod');
   const resolved = await app.inject({
     method: 'POST',

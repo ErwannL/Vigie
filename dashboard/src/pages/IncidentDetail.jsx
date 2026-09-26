@@ -3,7 +3,7 @@ import { useApp } from '../context.js';
 import { ErrorMessage, Loadable } from '../components/Status.jsx';
 import { dateTime } from '../format.js';
 import { useResource } from '../hooks/useResource.js';
-import { REPLAYABLE, incidentLabel, segmentSummary } from './incidentText.js';
+import { REPLAYABLE, flattenNumbers, incidentLabel, segmentSummary } from './incidentText.js';
 
 const TARGETS = ['dev', 'recette'];
 
@@ -52,7 +52,13 @@ function Triggers({ triggers }) {
             <td>{t(`kind.${tr.kind}`)}</td>
             <td>{t(`source.${tr.source}`)}</td>
             <td>
-              <code>{JSON.stringify(tr.numbers)}</code>
+              <ul className="numbers">
+                {flattenNumbers(tr.numbers).map(([key, value]) => (
+                  <li key={key}>
+                    <span className="muted">{key}</span> <code>{value}</code>
+                  </li>
+                ))}
+              </ul>
             </td>
             <td>{dateTime(tr.detectedAt, lang)}</td>
           </tr>

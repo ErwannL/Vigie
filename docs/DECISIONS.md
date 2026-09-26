@@ -148,6 +148,10 @@ reopened` only when the signal returns with an `appVersion` different from the o
 
 ## Operations
 
+- **Fakes are stateless across processes**: the fake Figura encodes its outcome and start
+  time in the run id, the fake issue sink derives refs from the incident. The API starts
+  replays and the jobs process polls them; in-memory fakes would disagree (found by running
+  the demo in Docker, where the replay could never settle).
 - **Three processes, one image**: API, jobs, seed. Jobs are a separate process so the API
   can scale horizontally without running detection several times.
 - **Timers are injected** (`createScheduler({ setTimer, clearTimer })`); a job is

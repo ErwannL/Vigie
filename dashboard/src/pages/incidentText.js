@@ -14,3 +14,14 @@ export function segmentSummary(segments, t) {
 }
 
 export const REPLAYABLE = ['open', 'reopened', 'confirmed', 'not_reproduced'];
+
+/** Flattens a signal's numbers for display: `{ a: 1, t: { b: 2 } }` → [['a', '1'], ['t.b', '2']]. */
+export function flattenNumbers(numbers, prefix = '') {
+  return Object.entries(numbers).flatMap(([key, value]) => {
+    const path = `${prefix}${key}`;
+    if (value !== null && typeof value === 'object' && !Array.isArray(value)) {
+      return flattenNumbers(value, `${path}.`);
+    }
+    return [[path, Array.isArray(value) ? value.join(', ') : String(value)]];
+  });
+}

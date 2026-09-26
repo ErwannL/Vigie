@@ -40,14 +40,17 @@ test('detects a slow route, explains it, and opens an issue', async () => {
     appVersion: '2.4.0',
     sinceVersion: '2.4.0',
     segments: { device: [{ value: 'mobile', share: 1 }], plan: [{ value: 'pro', share: 1 }] },
-    issueRef: 'FAKE-1',
+    issueRef: 'FAKE-prod-1',
   });
   expect(incident.triggers[0].numbers).toMatchObject({
     samples: 40,
     baselineSamples: 60,
     baselineP95Ms: 156,
   });
-  expect(c.adapters.issues.impl.issues.get('FAKE-1')).toMatchObject({ incidentId: 1, env: 'prod' });
+  expect(c.adapters.issues.impl.issues.get('FAKE-prod-1')).toMatchObject({
+    incidentId: 1,
+    env: 'prod',
+  });
   expect(await svc.list('recette')).toEqual([]);
   expect(await c.services.incidents.runDetection('recette')).toMatchObject({
     signals: 0,
@@ -103,13 +106,13 @@ test('a resolved incident without any app version stays resolved', async () => {
 });
 
 test('replay: prod incident reproduced in recette, then confirmed', async () => {
-  const { c, svc } = await setup();
+  const { c, svc, clock } = await setup();
   await ingest(c, 'prod', slowRouteData());
   await svc.runDetection('prod');
   const reproducing = await svc.requestReplay('prod', 1, 'recette', operator);
   expect(reproducing.status).toBe('reproducing');
   expect(reproducing.replay).toMatchObject({
-    runId: 'recette:fake-1',
+    runId: expect.stringMatching(/^recette:fake\.reproduced\.\d+\.2$/),
     sourceEnv: 'prod',
     targetEnv: 'recette',
     state: 'queued',
@@ -123,11 +126,12 @@ test('replay: prod incident reproduced in recette, then confirmed', async () => 
   expect(reproducing.replay.scenario.basis.pathSessions).toBe(40);
   expect(await svc.pollReplays('prod')).toEqual({ env: 'prod', polled: 1, settled: 0 });
   expect((await svc.get('prod', 1)).replay.state).toBe('running');
+  clock.advance(20000);
   expect(await svc.pollReplays('prod')).toEqual({ env: 'prod', polled: 1, settled: 1 });
   const confirmed = await svc.get('prod', 1);
   expect(confirmed.status).toBe('confirmed');
   expect(confirmed.replay.evidence).toMatchObject({ runner: 'fake-figura' });
-  expect(c.adapters.issues.impl.issues.get('FAKE-1').reproduction.state).toBe('reproduced');
+  expect(c.adapters.issues.impl.issues.get('FAKE-prod-1').reproduction.state).toBe('reproduced');
 });
 
 test('replay guards: prod target, bad transition, unknown incident', async () => {
@@ -147,17 +151,17 @@ test('replay guards: prod target, bad transition, unknown incident', async () =>
 });
 
 test('a failed run returns to the previous status; unchanged or failing polls are harmless', async () => {
-  const { c, svc } = await setup();
-  const fake = createFakeFigura({ decide: () => 'failed' });
+  const { c, svc, clock } = await setup();
+  const fake = createFakeFigura({ clock, decide: () => 'failed' });
   c.adapters.figura = createFiguraClient({ dev: fake, recette: fake });
   await ingest(c, 'prod', slowRouteData());
   await svc.runDetection('prod');
   await svc.requestReplay('prod', 1, 'dev', operator);
   await svc.pollReplays('prod');
+  clock.advance(20000);
   expect(await svc.pollReplays('prod')).toMatchObject({ settled: 1 });
   expect((await svc.get('prod', 1)).status).toBe('open');
   await svc.requestReplay('prod', 1, 'dev', operator);
-  fake.runs.get('fake-2').polls = 5;
   const running = vi.spyOn(fake, 'status').mockResolvedValue({ state: 'queued' });
   expect(await svc.pollReplays('prod')).toMatchObject({ polled: 1, settled: 0 });
   running.mockRejectedValue(Object.assign(new Error('x'), { code: 'upstream_timeout' }));

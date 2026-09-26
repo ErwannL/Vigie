@@ -49,6 +49,9 @@ personas to Figura. **recette** is healthy; **dev** only has `essential`-consent
 Module 2 shows its "no analytics consent data yet" state. Settings shows every source as
 _fake_ (demo), _configured_ or _not configured_.
 
+Screenshots of the demo (taken in a 1024 px iframe from a fake admin console, with a real
+SSO handoff) are in [`docs/screenshots/`](docs/screenshots/).
+
 ## Layout
 
 | Path                       | What                                                                        |

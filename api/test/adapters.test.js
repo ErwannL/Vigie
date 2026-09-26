@@ -181,14 +181,18 @@ test('Figura never runs against prod: replay, status and personas refuse it befo
 });
 
 test('Figura client routes run ids to their target and reports missing targets', async () => {
-  const fake = createFakeFigura({ decide: () => 'not_reproduced' });
+  const clock = fixedClock('2026-09-01T12:00:00Z');
+  const fake = createFakeFigura({ clock, decide: () => 'not_reproduced' });
   const client = createFiguraClient({ dev: null, recette: fake });
   const { runId } = await client.replay(scenario('recette'));
-  expect(runId).toBe('recette:fake-1');
+  expect(runId).toBe(`recette:fake.not_reproduced.${clock.now().getTime()}.1`);
   expect(await client.status(runId)).toEqual({ state: 'running', evidence: null });
-  expect(await client.status(runId)).toMatchObject({
+  clock.advance(19999);
+  expect((await client.status(runId)).state).toBe('running');
+  clock.advance(1);
+  expect(await client.status(runId)).toEqual({
     state: 'not_reproduced',
-    evidence: { steps: 1 },
+    evidence: { runner: 'fake-figura', steps: 1, links: [] },
   });
   expect(await client.status('recette:unknown')).toEqual({
     state: 'failed',
@@ -202,18 +206,23 @@ test('Figura client routes run ids to their target and reports missing targets',
     accepted: 2,
   });
   expect(fake.personaSets).toHaveLength(1);
-  const defaults = createFakeFigura();
-  await defaults.replay(scenario('dev'));
-  await defaults.status('fake-1');
-  expect((await defaults.status('fake-1')).state).toBe('reproduced');
 });
 
-test('fake issue sink stores payloads by ref', async () => {
+test('the fake Figura is stateless: another process (another instance) can poll the run', async () => {
+  const clock = fixedClock('2026-09-01T12:00:00Z');
+  const api = createFakeFigura({ clock });
+  const jobs = createFakeFigura({ clock, runningMs: 0 });
+  const { runId } = await api.replay(scenario('dev'));
+  expect(await jobs.status(runId)).toMatchObject({ state: 'reproduced' });
+});
+
+test('fake issue sink derives refs from the incident, so processes agree', async () => {
   const sink = createFakeIssueSink();
-  const { ref } = await sink.open({ title: 'a' });
-  expect(ref).toBe('FAKE-1');
+  const { ref } = await sink.open({ env: 'prod', incidentId: 7, title: 'a' });
+  expect(ref).toBe('FAKE-prod-7');
   await sink.update(ref, { title: 'b' });
   expect(sink.issues.get(ref)).toEqual({ title: 'b' });
+  expect((await createFakeIssueSink().open({ env: 'prod', incidentId: 7 })).ref).toBe(ref);
 });
 
 test('registry: configured → real, missing in development → fake, missing otherwise → disabled', () => {

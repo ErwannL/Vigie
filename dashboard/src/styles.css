@@ -247,6 +247,7 @@ pre {
 
 .sev,
 .status {
+  white-space: nowrap;
   padding: 0.1rem 0.45rem;
   border-radius: 4px;
   font-weight: 600;
@@ -357,4 +358,13 @@ pre {
   max-width: 40rem;
   margin: 4rem auto;
   padding: 0 1rem;
+}
+
+.numbers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.15rem 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }

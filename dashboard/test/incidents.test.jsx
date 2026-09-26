@@ -58,7 +58,11 @@ test('incident detail: facts, since-version marker, triggers, history; replay in
   ).toBeInTheDocument();
   expect(screen.getByText('Since version 2.4.0')).toBeInTheDocument();
   expect(screen.getByText('card.move')).toBeInTheDocument();
-  expect(screen.getByText('{"currentP95Ms":3763,"baselineP95Ms":340}')).toBeInTheDocument();
+  const item = (key) => screen.getByText(key).closest('li');
+  expect(item('currentP95Ms')).toHaveTextContent('currentP95Ms 3763');
+  expect(item('thresholds.minRatio')).toHaveTextContent('thresholds.minRatio 1.5');
+  expect(item('msgKinds')).toHaveTextContent('msgKinds a, b');
+  expect(item('error')).toHaveTextContent('error null');
   expect(screen.getByText('Log evidence')).toBeInTheDocument();
   expect(screen.getByText('Not replayed yet.')).toBeInTheDocument();
   expect(screen.getByText(/Opened$/)).toBeInTheDocument();
