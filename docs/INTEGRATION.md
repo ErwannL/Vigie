@@ -21,6 +21,8 @@ Legend: **[Vigie]** change in this repository · **[Orqea]** change in Orqea ·
       `/v1/events` and `/v1/subjects`; only the admin console's users need the dashboard.
 - [ ] **[Ops]** Set `VIGIE_ALLOWED_FRAME_ANCESTORS` to the admin console origin (e.g.
       `https://admin.orqea.com`) and `VIGIE_PUBLIC_URL` to the dashboard URL.
+- [ ] **[Ops]** Set `VIGIE_ORQEA_URL` to the Orqea of this environment (the dashboard's
+      « ← Retour sur Orqea » link, exposed on `/healthz` as `orqeaUrl`; default `https://orqea.dev`).
 - [ ] **[Ops]** Back up the `pgdata` volume; size it for `VIGIE_RAW_RETENTION_DAYS` of events.
 
 ## 1. What Orqea must build

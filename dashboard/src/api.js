@@ -48,6 +48,12 @@ export function createApi({ base, fetchImpl, timeoutMs = 15000 }) {
     setToken(value) {
       token = value;
     },
+    /** Public: the Orqea URL of this environment, null when unknown (never throws). */
+    orqeaUrl: () =>
+      request('/healthz').then(
+        (body) => body.orqeaUrl ?? null,
+        () => null,
+      ),
     login: (ssoToken) => request('/auth/sso', { method: 'POST', body: { token: ssoToken } }),
     settings: () => request('/v1/settings'),
     incidents: (env, status) => request(`/v1/incidents?${q(status ? { env, status } : { env })}`),

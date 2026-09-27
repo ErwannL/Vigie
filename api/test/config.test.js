@@ -18,6 +18,7 @@ test('defaults are safe: production mode, 60 days retention, no secrets', () => 
   expect(c.allowedFrameAncestors).toBe("'self'");
   expect(c.autoReplayTarget).toBeNull();
   expect(c.publicUrl).toBeNull();
+  expect(c.orqeaUrl).toBe('https://orqea.dev');
   expect(c.port).toBe(3000);
   expect(c.figura).toEqual({ dev: null, recette: null });
   expect(c.ssoIssuer).toBe('orqea-admin-console');
@@ -103,4 +104,13 @@ test('errors carry a code and a status', () => {
     501,
     'Thing.do',
   ]);
+});
+
+test('VIGIE_ORQEA_URL: any http(s) URL, anything else refused', () => {
+  expect(loadConfig({ VIGIE_ORQEA_URL: ' http://localhost:3001/apps/return ' }).orqeaUrl).toBe(
+    'http://localhost:3001/apps/return',
+  );
+  expect(() => loadConfig({ VIGIE_ORQEA_URL: 'javascript:alert(1)' })).toThrow(
+    'config_invalid_orqea_url',
+  );
 });

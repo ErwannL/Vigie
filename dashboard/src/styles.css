@@ -368,3 +368,92 @@ pre {
   margin: 0;
   padding: 0;
 }
+
+/* Branding (same set as SportSplitter / Archipel by Orqea): logo, credits, way back, loader. */
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.brand-name .by {
+  color: var(--muted);
+  font-weight: 400;
+  font-size: 0.85em;
+}
+
+.credits {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.8em;
+  font-weight: 400;
+}
+
+.credits a {
+  color: var(--muted);
+}
+
+.back {
+  align-self: center;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 20vh 0;
+  color: var(--muted);
+}
+
+.gate-name {
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.vg-logo--loop .vg-wave,
+.vg-hover:hover .vg-logo--hover .vg-wave,
+.vg-logo--hover:hover .vg-wave {
+  animation: vg-wave 1.6s ease-in-out infinite;
+}
+
+.vg-logo--loop .vg-wave-1,
+.vg-hover:hover .vg-logo--hover .vg-wave-1,
+.vg-logo--hover:hover .vg-wave-1 {
+  animation-delay: 0.3s;
+}
+
+.vg-logo--loop .vg-lamp {
+  animation: vg-lamp 1.6s ease-in-out infinite;
+}
+
+@keyframes vg-wave {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes vg-lamp {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vg-logo .vg-wave,
+  .vg-logo .vg-lamp {
+    animation: none !important;
+  }
+}

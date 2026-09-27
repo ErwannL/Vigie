@@ -9,6 +9,14 @@ export default {
   'common.window': 'Période',
   'common.lastDays': '{days} derniers jours',
 
+  'brand.byline': 'par Orqea',
+  'brand.poweredBy': 'Propulsé par Orqea',
+  'brand.author': 'Développé par {name}',
+  'brand.authorNewTab': 'Développé par {name} (nouvel onglet)',
+  'brand.back': '← Retour sur Orqea',
+  'notFound.title': '404 — page introuvable',
+  'notFound.hint': 'Cette page n’existe pas dans Vigie.',
+
   'lang.en': 'English',
   'lang.fr': 'Français',
   'theme.toLight': 'Thème clair',

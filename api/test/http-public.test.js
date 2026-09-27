@@ -8,7 +8,10 @@ afterAll(async () => (await testDb()).close());
 
 test('health, readiness and 503 when storage is unreachable', async () => {
   const { app, container } = await testApp();
-  expect((await app.inject('/healthz')).json()).toEqual({ status: 'ok' });
+  expect((await app.inject('/healthz')).json()).toEqual({
+    status: 'ok',
+    orqeaUrl: 'https://orqea.dev',
+  });
   expect((await app.inject('/readyz')).json()).toEqual({ status: 'ready' });
   container.db.ping = async () => {
     throw new Error('down');
