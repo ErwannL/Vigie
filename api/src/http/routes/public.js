@@ -20,7 +20,8 @@ export function registerPublicRoutes(app, deps) {
     return req.params.user;
   };
 
-  app.get('/healthz', async () => ({ status: 'ok' }));
+  // `orqeaUrl` is public (a link): it tells the dashboard which Orqea to go back to.
+  app.get('/healthz', async () => ({ status: 'ok', orqeaUrl: config.orqeaUrl }));
 
   app.get('/readyz', async (_req, reply) => {
     try {

@@ -1,5 +1,7 @@
 import { useApp } from '../context.js';
 import { LANGUAGES } from '../i18n/index.js';
+import { BackToOrqea, BrandName, Credits } from './Brand.jsx';
+import { Logo } from './Logo.jsx';
 import { Select } from './Select.jsx';
 
 export const ENVS = ['dev', 'recette', 'prod'];
@@ -7,20 +9,22 @@ export const PAGES = ['incidents', 'usage', 'funnels', 'landing', 'personas', 's
 
 /** Header with the always-visible environment, navigation, theme and language controls. */
 export function Layout({ page, onPage, onEnv, theme, onTheme, onLang, children }) {
-  const { env, lang, t } = useApp();
+  const { env, lang, t, orqeaUrl } = useApp();
   return (
     <div className="app">
       <header className="header">
-        <div className="brand">
-          <span className="logo" aria-hidden="true">
-            ◈
+        <div className="brand vg-hover">
+          <Logo size={32} mode="hover" title="Vigie" />
+          <span className="brand-text">
+            <BrandName t={t} />
+            <Credits t={t} orqeaUrl={orqeaUrl} />
           </span>
-          <span>Vigie</span>
           <span className={`env-badge env-${env}`} data-testid="env-badge">
             {t('env.viewing', { env: t(`env.${env}`) })}
           </span>
         </div>
         <div className="controls">
+          <BackToOrqea t={t} orqeaUrl={orqeaUrl} />
           <Select
             id="env"
             label={t('env.label')}

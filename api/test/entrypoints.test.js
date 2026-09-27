@@ -22,7 +22,7 @@ test('the API listens, answers and stops on SIGTERM', async () => {
   );
   const { port } = api.app.server.address();
   const res = await fetch(`http://127.0.0.1:${port}/healthz`);
-  expect(await res.json()).toEqual({ status: 'ok' });
+  expect(await res.json()).toEqual({ status: 'ok', orqeaUrl: 'https://orqea.dev' });
   signals.emit('SIGTERM');
   await vi.waitFor(() => expect(api.app.server.listening).toBe(false));
   expect(sink.text()).toContain('Server listening');

@@ -16,6 +16,7 @@ const INSIGHTS = {
 export function fakeApi(over = {}) {
   return {
     onUnauthorized: vi.fn(),
+    orqeaUrl: vi.fn(async () => null),
     setToken: vi.fn(),
     login: vi.fn(async () => ({
       token: 'tok',

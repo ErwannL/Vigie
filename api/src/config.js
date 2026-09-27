@@ -56,6 +56,15 @@ function frameAncestors(value) {
   return list.map((s) => (CSP_KEYWORDS.has(s) ? `'${s}'` : s)).join(' ');
 }
 
+export const DEFAULT_ORQEA_URL = 'https://orqea.dev';
+
+/** Public link of « Back to Orqea » (the Orqea of THIS environment); http(s) only. */
+function orqeaUrl(value) {
+  const v = nonEmpty(value) ?? DEFAULT_ORQEA_URL;
+  if (!/^https?:\/\/\S+$/i.test(v)) throw new AppError('config_invalid_orqea_url', 500);
+  return v;
+}
+
 function autoReplayTarget(value) {
   const v = nonEmpty(value);
   if (v === null) return null;
@@ -84,6 +93,7 @@ export function loadConfig(vars) {
     port: intOr(vars.VIGIE_PORT, 3000, 0, 65535),
     databaseUrl: nonEmpty(vars.DATABASE_URL) ?? 'postgres://vigie:vigie@localhost:5432/vigie',
     publicUrl: nonEmpty(vars.VIGIE_PUBLIC_URL),
+    orqeaUrl: orqeaUrl(vars.VIGIE_ORQEA_URL),
     logLevel: nonEmpty(vars.VIGIE_LOG_LEVEL) ?? 'info',
     ingestSecrets: Object.fromEntries(
       ENVS.map((e) => [e, secretOrNull(vars[`VIGIE_INGEST_SECRET_${e.toUpperCase()}`])]),

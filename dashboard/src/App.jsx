@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
+import { DEFAULT_ORQEA_URL, NotFound } from './components/Brand.jsx';
 import { Gate } from './components/Gate.jsx';
 import { Layout } from './components/Layout.jsx';
 import { AppContext } from './context.js';
@@ -47,9 +48,21 @@ function useAuth({ api, handoff, session, now }) {
   return auth;
 }
 
+/** The Orqea URL of this environment, from `/api/healthz`; orqea.dev until (or unless) known. */
+function useOrqeaUrl(api) {
+  const [url, setUrl] = useState(DEFAULT_ORQEA_URL);
+  useEffect(() => {
+    api.orqeaUrl().then((value) => {
+      if (value) setUrl(value);
+    });
+  }, [api]);
+  return url;
+}
+
 export function App({ api, location, history, session, prefs, now, navigatorLanguage }) {
   const [handoff] = useState(() => takeHandoff(location, history));
   const auth = useAuth({ api, handoff, session, now });
+  const orqeaUrl = useOrqeaUrl(api);
   const [lang, setLangState] = useState(() =>
     initialLanguage(prefs.get('vigie.lang'), navigatorLanguage),
   );
@@ -73,9 +86,14 @@ export function App({ api, location, history, session, prefs, now, navigatorLang
     prefs.set('vigie.theme', value);
     setThemeState(value);
   };
-  const context = useMemo(() => ({ api, env, lang, t }), [api, env, lang, t]);
+  const context = useMemo(() => ({ api, env, lang, t, orqeaUrl }), [api, env, lang, t, orqeaUrl]);
 
-  if (auth.state !== 'ready') return <Gate state={auth.state} code={auth.code} t={t} />;
+  // nginx serves the app for every path: anything but `/` is a branded 404.
+  if (!['/', '/index.html'].includes(location.pathname))
+    return <NotFound t={t} orqeaUrl={orqeaUrl} />;
+  if (auth.state !== 'ready') {
+    return <Gate state={auth.state} code={auth.code} t={t} orqeaUrl={orqeaUrl} />;
+  }
   const Page = PAGE_COMPONENTS[page];
   return (
     <AppContext.Provider value={context}>

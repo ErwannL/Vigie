@@ -7,6 +7,8 @@ to be embedded in the Orqea admin console in an `<iframe>` (works at 1024 px wid
   removes the fragment immediately, exchanges it at `POST /api/auth/sso`, and keeps Vigie's
   bearer session in memory and `sessionStorage` (no cookie: works in a cross-site iframe).
   Without a valid handoff it explains how to get in.
+- Branding like the other Orqea companion apps: « Vigie by Orqea », animated-logo loader and
+  favicon, credits, « ← Retour sur Orqea » (`VIGIE_ORQEA_URL` via `/api/healthz`), branded 404.
 - The environment selector is always visible, with a coloured badge (prod is red).
 - Pages: Incidents (list, detail with triggers and replay, env comparison), Usage (features,
   segments, errors per segment, never-used features), Funnels, Landing, Personas, Settings.

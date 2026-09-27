@@ -85,7 +85,9 @@ test('while signing in, a checking screen is shown', async () => {
   let resolve;
   const api = fakeApi({ login: vi.fn(() => new Promise((r) => (resolve = r))) });
   setup({ hash: '#sso=slow', api });
-  expect(screen.getByRole('heading', { name: 'Signing you in…' })).toBeInTheDocument();
+  const loader = screen.getByRole('status');
+  expect(loader).toHaveTextContent('Signing you in…');
+  expect(loader.querySelector('svg.vg-logo--loop')).not.toBeNull();
   await act(async () => resolve({ token: 't', expiresAt: '2099-01-01T00:00:00Z' }));
   expect(await screen.findByTestId('env-badge')).toBeInTheDocument();
 });
