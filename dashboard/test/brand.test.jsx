@@ -75,7 +75,7 @@ test('the gate is branded, with orqea.dev when the URL is unknown', async () => 
     'href',
     DEFAULT_ORQEA_URL,
   );
-  expect(screen.getByRole('img', { name: 'Vigie' })).toBeInTheDocument();
+  expect(screen.getByRole('img', { name: 'Vigie' })).toHaveClass('vg-logo--hover');
   expect(screen.getByText('Developed by Erwann Laplante')).toBeInTheDocument();
 });
 

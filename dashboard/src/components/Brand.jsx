@@ -63,7 +63,7 @@ export function Loader({ label }) {
 export function BrandedPage({ t, orqeaUrl, children }) {
   return (
     <div className="gate">
-      <Logo size={64} title="Vigie" />
+      <Logo size={64} mode="hover" title="Vigie" />
       <p className="gate-name">
         <BrandName t={t} />
       </p>
