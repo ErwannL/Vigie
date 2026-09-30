@@ -42,6 +42,8 @@ export function Credits({ t, orqeaUrl }) {
 
 /** « ← Back to Orqea »: the session comes from Orqea, so there is no logout, we go back. */
 export function BackToOrqea({ t, orqeaUrl }) {
+  // Inside the Orqea console iframe the console itself is the way back: no button there.
+  if (window.self !== window.top) return null;
   return (
     <a className="back" href={orqeaUrl} target="_top">
       {t('brand.back')}

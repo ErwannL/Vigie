@@ -55,7 +55,7 @@ test('header: logo, « by Orqea », credits and the way back to the configured O
   const header = (await screen.findByTestId('env-badge')).closest('header');
   expect(header).toHaveTextContent('Vigie par Orqea');
   expect(within(header).getByRole('img', { name: 'Vigie' })).toHaveClass('vg-logo--hover');
-  const back = await within(header).findByRole('link', { name: '← Retour sur Orqea' });
+  const back = await within(header).findByRole('link', { name: '← Revenir sur Orqea' });
   expect(back).toHaveAttribute('href', ORQEA);
   const owner = within(header).getByRole('link', { name: 'Propulsé par Orqea' });
   expect(owner).toHaveAttribute('href', ORQEA);
@@ -82,7 +82,7 @@ test('the gate is branded, with orqea.dev when the URL is unknown', async () => 
 test('any path but / is a branded 404, even without a session', async () => {
   setup({ pathname: '/nope', api: fakeApi({ orqeaUrl: vi.fn(async () => ORQEA) }) });
   expect(screen.getByRole('heading', { name: '404 — page introuvable' })).toBeInTheDocument();
-  expect(await screen.findByRole('link', { name: '← Retour sur Orqea' })).toHaveAttribute(
+  expect(await screen.findByRole('link', { name: '← Revenir sur Orqea' })).toHaveAttribute(
     'href',
     ORQEA,
   );
@@ -99,4 +99,18 @@ test('api.orqeaUrl reads /healthz and never throws', async () => {
       throw new Error('down');
     }).orqeaUrl(),
   ).toBeNull();
+});
+
+test('the way back is hidden inside an iframe (the Orqea console)', async () => {
+  const top = vi.spyOn(window, 'top', 'get').mockReturnValue({});
+  setup({ pathname: '/nope' });
+  expect(screen.getByRole('heading', { name: '404 — page introuvable' })).toBeInTheDocument();
+  expect(screen.queryByRole('link', { name: /Revenir sur Orqea/ })).toBeNull();
+  top.mockRestore();
+});
+
+test('the logo also animates on keyboard focus, and stays still under reduced motion', () => {
+  const css = readFileSync('src/styles.css', 'utf8');
+  expect(css).toContain('.vg-hover:focus-within .vg-logo--hover .vg-wave');
+  expect(css).toContain('prefers-reduced-motion: reduce');
 });

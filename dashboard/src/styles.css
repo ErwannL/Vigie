@@ -417,13 +417,17 @@ pre {
 
 .vg-logo--loop .vg-wave,
 .vg-hover:hover .vg-logo--hover .vg-wave,
-.vg-logo--hover:hover .vg-wave {
+.vg-logo--hover:hover .vg-wave,
+.vg-hover:focus-within .vg-logo--hover .vg-wave,
+.gate:focus-within .vg-logo--hover .vg-wave {
   animation: vg-wave 1.6s ease-in-out infinite;
 }
 
 .vg-logo--loop .vg-wave-1,
 .vg-hover:hover .vg-logo--hover .vg-wave-1,
-.vg-logo--hover:hover .vg-wave-1 {
+.vg-logo--hover:hover .vg-wave-1,
+.vg-hover:focus-within .vg-logo--hover .vg-wave-1,
+.gate:focus-within .vg-logo--hover .vg-wave-1 {
   animation-delay: 0.3s;
 }
 
