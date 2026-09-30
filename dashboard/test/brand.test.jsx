@@ -68,6 +68,13 @@ test('header: logo, « by Orqea », credits and the way back to the configured O
   expect(author).toHaveAttribute('href', AUTHOR.href);
   expect(author).toHaveAttribute('target', '_blank');
   expect(author).toHaveAttribute('rel', 'noreferrer noopener');
+  // both credit lines sit UNDER the name, inside the header block, and never say « new tab »
+  const text = header.querySelector('.brand-text');
+  expect(text).toContainElement(owner);
+  expect(text).toContainElement(author);
+  expect(text.children[0]).toHaveClass('brand-name');
+  expect(text.children[1]).toHaveClass('credits');
+  expect(author.textContent).not.toMatch(/nouvel onglet|new tab/i);
 });
 
 test('the gate is branded, with orqea.dev when the URL is unknown', async () => {
