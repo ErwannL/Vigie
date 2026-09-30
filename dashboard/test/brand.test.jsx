@@ -59,8 +59,10 @@ test('header: logo, « by Orqea », credits and the way back to the configured O
   expect(back).toHaveAttribute('href', ORQEA);
   const owner = within(header).getByRole('link', { name: 'Propulsé par Orqea' });
   expect(owner).toHaveAttribute('href', ORQEA);
+  expect(owner).toHaveAttribute('target', '_top');
+  expect(back).toHaveAttribute('target', '_top');
   const author = within(header).getByRole('link', {
-    name: 'Développé par Erwann Laplante (nouvel onglet)',
+    name: 'Développé par Erwann Laplante',
   });
   expect(author).toHaveTextContent('Développé par Erwann Laplante');
   expect(author).toHaveAttribute('href', AUTHOR.href);

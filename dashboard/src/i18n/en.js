@@ -12,7 +12,6 @@ export default {
   'brand.byline': 'by Orqea',
   'brand.poweredBy': 'Powered by Orqea',
   'brand.author': 'Developed by {name}',
-  'brand.authorNewTab': 'Developed by {name} (new tab)',
   'brand.back': '← Back to Orqea',
   'notFound.title': '404 — page not found',
   'notFound.hint': 'This page does not exist in Vigie.',

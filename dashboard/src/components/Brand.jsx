@@ -31,7 +31,7 @@ export function Credits({ t, orqeaUrl }) {
         href={AUTHOR.href}
         target="_blank"
         rel="noreferrer noopener"
-        aria-label={t('brand.authorNewTab', { name: AUTHOR.name })}
+        aria-label={t('brand.author', { name: AUTHOR.name })}
         data-credit="author"
       >
         {t('brand.author', { name: AUTHOR.name })}
