@@ -31,7 +31,7 @@ export const THEMES = Object.freeze(['dark', 'light']);
 export const CONSENTS = Object.freeze(['essential', 'analytics']);
 
 export const FEATURES = Object.freeze({
-  version: 2,
+  version: 3,
   items: Object.freeze([
     'board.create',
     'board.share',
@@ -62,6 +62,7 @@ export const FEATURES = Object.freeze({
     'calendar.subscribe',
     'apps.open',
     'board.encrypt',
+    'push.enable',
   ]),
 });
 

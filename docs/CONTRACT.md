@@ -421,12 +421,12 @@ next change; it never blocks detection.
 In code (`api/src/catalogues.js`), versioned, and served at `GET /v1/catalogues` (operator
 session). Unknown `type` or `feature` values are rejected at ingestion.
 
-- `features` (v2): `board.create`, `board.share`, `list.create`, `card.create`, `card.move`,
+- `features` (v3): `board.create`, `board.share`, `list.create`, `card.create`, `card.move`,
   `card.bulk`, `card.comment`, `rules.edit`, `agent.run`, `forms.create`, `qr.create`,
   `import.trello`, `calendar.view`, `billing.upgrade`, `search.global`, `cicd.connect`,
   `members.invite`, `export.csv`, `notes.create`, `assistant.chat`, `assistant.report`,
   `card.duplicate`, `cicd.fix`, `remote.connect`, `import.github`, `import.gitlab`,
-  `calendar.subscribe`, `apps.open`, `board.encrypt`. **The integrator aligns this list with Orqea** (bump the
+  `calendar.subscribe`, `apps.open`, `board.encrypt`, `push.enable`. **The integrator aligns this list with Orqea** (bump the
   version).
 - `funnels` (v1):
   - `activation`: `landing` (page_view, source landing) → `signup_start` (page_view `/signup`)

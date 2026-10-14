@@ -44,8 +44,9 @@ test('activity levels', () => {
 test('catalogues are versioned and exported together', () => {
   const c = catalogues();
   expect(c.eventSchema).toBe(1);
-  expect(c.features.version).toBe(2);
+  expect(c.features.version).toBe(3);
   expect(c.features.items).toContain('card.bulk');
+  expect(c.features.items).toContain('push.enable');
   expect(c.funnels.items.map((f) => f.key)).toEqual(['activation', 'upgrade']);
   expect(c.kAnonymity).toBe(10);
   expect(new Set(FEATURES.items).size).toBe(FEATURES.items.length);
