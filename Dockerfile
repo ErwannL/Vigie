@@ -3,7 +3,7 @@
 #   dashboard  static dashboard served by nginx, proxying /api to the API
 #   dev        full workspace with dev dependencies: tests, coverage, lint, format
 
-FROM node:22-alpine AS deps
+FROM node:22.23.4-alpine AS deps
 WORKDIR /app
 COPY package.json package-lock.json ./
 COPY api/package.json api/
@@ -17,7 +17,7 @@ FROM deps AS dashboard-build
 COPY dashboard dashboard
 RUN npm run build -w dashboard
 
-FROM node:22-alpine AS api
+FROM node:22.23.4-alpine AS api
 WORKDIR /app
 ENV NODE_ENV=production
 COPY package.json package-lock.json ./
